@@ -9,7 +9,8 @@ function Movies(props) {
       <h2>Movies</h2>
       <div className="flex-container">
         {props.data.map((movie) => {
-          return <Instance name={movie} key={key++} />;
+          // console.log(movie);
+          return <Instance movie={movie} key={key++} />;
         })}
       </div>
     </React.Fragment>

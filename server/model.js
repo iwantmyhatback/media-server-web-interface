@@ -1,17 +1,31 @@
 const fs = require('fs');
 const mediaPath = '/Volumes/share';
 
+const movieCollection = require('../ETL/movieDatabase.js');
+
 module.exports.listMovies = (req, res) => {
-  fs.readdir(`${mediaPath}/Media/Video Media/Movies`, (err, file) => {
-    let movies = [];
-    for (let movie of file) {
-      if (movie[0] !== '.') {
-        // console.log(movie);
-        movies.push(movie);
+  // fs.readdir(`${mediaPath}/Media/Video Media/Movies`, (err, file) => {
+  //   let movies = [];
+  //   for (let movie of file) {
+  //     if (movie[0] !== '.') {
+  //       // console.log(movie);
+  //       movies.push(movie);
+  //     }
+  //   }
+  //   res.send(movies);
+  // console.log(Object.values(movieCollection));
+  res.send(
+    Object.values(movieCollection).sort((a, b) => {
+      if (a.name < b.name) {
+        return -1;
       }
-    }
-    res.send(movies);
-  });
+      if (a.name > b.name) {
+        return 1;
+      }
+      return 0;
+    })
+  );
+  // });
 };
 
 module.exports.listTv = (req, res) => {

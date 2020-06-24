@@ -8,27 +8,27 @@ function App() {
   const [movies, setMovies] = useState([]);
   const [shows, setShows] = useState([]);
 
-  let search = (e) => {
-    setSearchTerm(e.target.value);
-  };
+  // let search = (e) => {
+  //   setSearchTerm(e.target.value);
+  // };
 
-  // REQUEST SEARCHED TV
-  useEffect(() => {
-    console.log(searchTerm);
-    axios.get('/searchTV', { params: { searchTerm: searchTerm } }).then((data) => {
-      console.log(data);
-      setShows(data.data);
-    });
-  }, [searchTerm]);
+  // // REQUEST SEARCHED TV
+  // useEffect(() => {
+  //   console.log(searchTerm);
+  //   axios.get('/searchTV', { params: { searchTerm: searchTerm } }).then((data) => {
+  //     console.log(data);
+  //     setShows(data.data);
+  //   });
+  // }, [searchTerm]);
 
-  // REQUEST SEARCHED MOVIES
-  useEffect(() => {
-    console.log(searchTerm);
-    axios.get('/searchMovies', { params: { searchTerm: searchTerm } }).then((data) => {
-      console.log(data);
-      setMovies(data.data);
-    });
-  }, [searchTerm]);
+  // // REQUEST SEARCHED MOVIES
+  // useEffect(() => {
+  //   console.log(searchTerm);
+  //   axios.get('/searchMovies', { params: { searchTerm: searchTerm } }).then((data) => {
+  //     console.log(data);
+  //     setMovies(data.data);
+  //   });
+  // }, [searchTerm]);
 
   // INITIAL MOVIE LIST REQUEST
   useEffect(() => {
@@ -49,11 +49,11 @@ function App() {
   return (
     <React.Fragment>
       <h1>Welcome To My Media</h1>
-      <form>
+      {/* <form>
         <div>
           <input type="text" name="search" onChange={search} />
         </div>
-      </form>
+      </form> */}
 
       <Movies data={movies} />
       <Shows data={shows} />
