@@ -25,11 +25,11 @@ let genreName = {
 
 function Instance(props) {
   console.log(props);
-  return (
+  return props.movie ? (
     <React.Fragment>
       <div className="flex-item">
         <h3>{props.movie.name}</h3>
-        <img src={props.movie.posterPath} alt="poster" width="500px" height="750px" />
+        <img src={props.movie.posterPath} alt="poster" width="100vw" height="150vh" />
         <div>Description: {props.movie.description}</div>
         <div>Year: {props.movie.year}</div>
         <div>Rating: {props.movie.avgRating} / 10</div>
@@ -37,6 +37,32 @@ function Instance(props) {
           Genres:{' '}
           {props.movie.genres
             ? props.movie.genres.map((id) => {
+                return <div style={{ display: 'inline', margin: '8px' }}>{genreName[id]}</div>;
+              })
+            : []}
+        </div>
+        <a href={props.movie.trailerPath}>Trailer</a>
+      </div>
+    </React.Fragment>
+  ) : (
+    <React.Fragment>
+      <div className="flex-item">
+        <h3>{props.show.name}</h3>
+        <img src={props.show.posterPath} alt="poster" width="100vw" height="150vh" />
+        <div>Description: {props.show.description}</div>
+        <div>
+          Seasons:{' '}
+          {props.show.genres
+            ? props.show.seasons.map((season) => {
+                return <div style={{ display: 'inline', margin: '8px' }}>{season}</div>;
+              })
+            : []}
+        </div>
+        <div>Rating: {props.show.avgRating} / 10</div>
+        <div>
+          Genres:{' '}
+          {props.show.genres
+            ? props.show.genres.map((id) => {
                 return <div style={{ display: 'inline', margin: '8px' }}>{genreName[id]}</div>;
               })
             : []}

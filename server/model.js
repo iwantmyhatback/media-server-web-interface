@@ -1,21 +1,28 @@
 const fs = require('fs');
+const database = require('../ETL/addData.js');
 const mediaPath = '/Volumes/share';
 
-const movieCollection = require('../ETL/movieDatabase.js');
+const showsObj = require('../ETL/showDatabase.js');
 
 module.exports.listMovies = (req, res) => {
-  // fs.readdir(`${mediaPath}/Media/Video Media/Movies`, (err, file) => {
-  //   let movies = [];
-  //   for (let movie of file) {
-  //     if (movie[0] !== '.') {
-  //       // console.log(movie);
-  //       movies.push(movie);
+  return database.getAllMovies().then((movieList) => {
+    res.send(movieList.rows);
+  });
+};
+
+module.exports.listTv = (req, res) => {
+  // fs.readdir(`${mediaPath}/Media/Video Media/TV`, (err, file) => {
+  //   let shows = [];
+  //   for (let show of file) {
+  //     if (show[0] !== '.') {
+  //       // console.log(show);
+  //       shows.push(show);
   //     }
   //   }
-  //   res.send(movies);
-  // console.log(Object.values(movieCollection));
+  //   res.send(shows);
+  // });
   res.send(
-    Object.values(movieCollection).sort((a, b) => {
+    Object.values(showsObj).sort((a, b) => {
       if (a.name < b.name) {
         return -1;
       }
@@ -25,20 +32,6 @@ module.exports.listMovies = (req, res) => {
       return 0;
     })
   );
-  // });
-};
-
-module.exports.listTv = (req, res) => {
-  fs.readdir(`${mediaPath}/Media/Video Media/TV`, (err, file) => {
-    let shows = [];
-    for (let show of file) {
-      if (show[0] !== '.') {
-        // console.log(show);
-        shows.push(show);
-      }
-    }
-    res.send(shows);
-  });
 };
 
 module.exports.searchMovies = (req, res) => {

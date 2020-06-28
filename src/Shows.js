@@ -10,7 +10,7 @@ function Shows(props) {
       <div className="flex-container">
         {props.data.map((show) => {
           // console.log(show);
-          // return <Instance name={show} key={key++} />;
+          return <Instance show={show} key={key++} />;
         })}
       </div>
     </React.Fragment>

@@ -1,4 +1,5 @@
 const config = require('../config/config.js');
+const database = require('./addData.js');
 const fs = require('fs');
 const util = require('util');
 const axios = require('axios');
@@ -147,8 +148,8 @@ let buildCurrentCollection = () => {
             })
             .catch((error) => {
               console.error('Error Fetching Movie Data From TMDB');
-              console.error(data[key]['name']);
-              console.error(error);
+              // console.error(data[key]['name']);
+              // console.error(error);
             })
         );
         // USE THIS BREAK TO STOP FOR LOOP FROM SENDING 2000+ REQUESTS TO TMDB WHILE DEBUGGING
@@ -162,11 +163,56 @@ let buildCurrentCollection = () => {
       console.error('Error Adding TMDB data to movieDirsObj');
     })
     .then((result) => {
-      console.log(result);
-      return result;
+      // console.log(result);
+      let promises = [];
+      let count = 0;
+      for (let key in result) {
+        // console.log(result[key].name, result[key].year);
+        if (count <= 61) {
+          count++;
+        } else {
+          count = 0;
+        }
+        promises.push(
+          axios
+            .get(
+              `https://www.googleapis.com/youtube/v3/search?key=${config.api.youtube[count]}&q=${result[key].name.split(' ').join('+')}+${
+                result[key].year
+              }+trailer&part=snippet&type=video`
+            )
+            .then((data) => {
+              console.log(data.data.items[0].snippet.title);
+              console.log(data.data.items[0].id.videoId);
+              movieDirsObj[key]['trailerPath'] = `http://www.youtube.com/watch?v=${data.data.items[0].id.videoId}`;
+              console.log(movieDirsObj[key]);
+              return movieDirsObj[key];
+            })
+            .catch((error) => {
+              console.error(error);
+            })
+        );
+
+        // STOP YOUTUBE API OVERDRAW WITH BELOW BREAK
+        //   break;
+      }
+      return Promise.all(promises).then((data) => {
+        return movieDirsObj;
+      });
+    })
+    .then((data) => {
+      return movieDirsObj;
     });
 };
 
-buildCurrentCollection();
+buildCurrentCollection()
+  .then((data) => {
+    database.truncateMovies();
+    return data;
+  })
+  .then((data) => {
+    for (let key in data) {
+      database.insertMovieRow(data[key]);
+    }
+  });
 
 module.exports = movieDirsObj;

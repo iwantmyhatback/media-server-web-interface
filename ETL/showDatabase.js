@@ -1,5 +1,4 @@
-const mediaPath = '/Volumes/share';
-const tmdb_api_key = 'ba2a8ed84b19a53a1a64ec40510fec3a';
+const config = require('../config/config.js');
 
 const fs = require('fs');
 const util = require('util');
@@ -12,26 +11,77 @@ let showsDirsObj = {};
 let buildCurrentCollection = () => {
   let dirPathfinder = () => {
     // READ SHOWS DIRECTORY AND CREATE ARRAY OF INNER FILES AND DIRECTORIES
-    return promreaddir(`${mediaPath}/Media/Video Media/TV`)
+    return promreaddir(`${config.mediaPath}/Media/Video Media/TV`)
       .then((showsArray) => {
         // ITERATE TO REMOVE (HIDDEN) METADATA FILES AND TRANSFER INTO OBJECT WITH PATHS
         for (let i = 0; i < showsArray.length; i++) {
           if (showsArray[i][0] !== '.') {
-            showsDirsObj[showsArray[i]] = { dirPath: `${mediaPath}/Media/Video Media/TV/${showsArray[i]}/` };
+            showsDirsObj[showsArray[i]] = { dirPath: `${config.mediaPath}/Media/Video Media/TV/${showsArray[i]}/` };
           }
         }
         // PASS ON OBJECT OF DIRECTORIES
         return showsDirsObj;
       })
       .then((filteredShowsObject) => {
-        console.log(filteredShowsObject);
+        let promises = [];
+        for (let key in filteredShowsObject) {
+          showsDirsObj[key]['name'] = key;
+          promises.push(
+            promreaddir(`${filteredShowsObject[key]['dirPath']}`).then((data) => {
+              showsDirsObj[key]['seasons'] = [];
+              for (let i = 0; i < data.length; i++) {
+                if (data[i][0] !== '.') {
+                  showsDirsObj[key]['seasons'].push(data[i]);
+                }
+              }
+              return showsDirsObj[key];
+            })
+          );
+        }
+        return Promise.all(promises);
+      })
+      .then((updatedShows) => {
+        let promises = [];
+        for (let key in showsDirsObj) {
+          promises.push(
+            axios
+              .get(`https://api.themoviedb.org/3/search/tv?api_key=ba2a8ed84b19a53a1a64ec40510fec3a&query=${key}`)
+              .then((responseData) => {
+                return responseData.data.results[0];
+              })
+              .then((topResponseData) => {
+                if (topResponseData) {
+                  showsDirsObj[key]['genres'] = topResponseData['genre_ids'];
+                  showsDirsObj[key]['description'] = topResponseData['overview'];
+                  showsDirsObj[key]['avgRating'] = topResponseData['vote_average'];
+                  // showsDirsObj[key]['backDropPath'] = `https://image.tmdb.org/t/p/w500/${topResponseData['backdrop_path']}`;
+                  showsDirsObj[key]['posterPath'] = `https://image.tmdb.org/t/p/w500/${
+                    topResponseData['poster_path'] ? topResponseData['poster_path'] : topResponseData['backdrop_path']
+                  }`;
+
+                  if (topResponseData['poster_path'] === null && topResponseData['backdrop_path'] === null) {
+                    showsDirsObj[key]['posterPath'] = 'https://www.movienewz.com/img/films/poster-holder.jpg';
+                  }
+                } else {
+                  showsDirsObj[key]['description'] = `Information on: ${showsDirsObj[key]['name']} Was Not Found On TMDB`;
+                  showsDirsObj[key]['posterPath'] = 'https://www.movienewz.com/img/films/poster-holder.jpg';
+                  showsDirsObj[key]['avgRating'] = null;
+                }
+
+                // console.log(showsDirsObj[key]);
+              })
+          );
+        }
+        return Promise.all(promises);
       })
       .then(() => {
         return showsDirsObj;
       });
   };
 
-  dirPathfinder();
+  dirPathfinder().then((data) => {
+    console.log(data);
+  });
 
   // let videoAndSubPathAdd = () => {
   //   return dirPathfinder()
@@ -102,7 +152,7 @@ let buildCurrentCollection = () => {
   //     for (let key in data) {
   //       promises.push(
   //         axios
-  //           .get(`https://api.themoviedb.org/3/search/movie?api_key=${tmdb_api_key}&query=${data[key]['name']}`)
+  //           .get(`https://api.themoviedb.org/3/search/movie?api_key=${config.api.tmdb}&query=${data[key]['name']}`)
   //           .then((result) => {
   //             // DISPLAY MOVIES SEARCHED AND RESULTS
   //             // console.log(data[key]['name']);
