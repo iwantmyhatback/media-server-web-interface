@@ -6,10 +6,9 @@ function Shows(props) {
   let key = 0;
   return (
     <React.Fragment>
-      <h2>Shows</h2>
+      <h2 style={{ color: 'white' }}>Shows</h2>
       <div className="flex-container">
         {props.data.map((show) => {
-          // console.log(show);
           return <Instance show={show} key={key++} />;
         })}
       </div>

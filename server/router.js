@@ -7,6 +7,16 @@ router.get('/mov', (req, res) => {
   model.listMovies(req, res);
 });
 
+router.get('/mov/byYr', (req, res) => {
+  // console.log(req);
+  model.listMoviesByYear(req, res);
+});
+
+router.get('/mov/yrs', (req, res) => {
+  // console.log(req);
+  model.listYears(req, res);
+});
+
 router.get('/tv', (req, res) => {
   // console.log(req);
   model.listTv(req, res);

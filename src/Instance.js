@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 
 let genreName = {
   28: 'Action',
@@ -24,50 +23,87 @@ let genreName = {
 };
 
 function Instance(props) {
-  console.log(props);
   return props.movie ? (
     <React.Fragment>
       <div className="flex-item">
-        <h3>{props.movie.name}</h3>
-        <img src={props.movie.posterPath} alt="poster" width="100vw" height="150vh" />
-        <div>Description: {props.movie.description}</div>
-        <div>Year: {props.movie.year}</div>
-        <div>Rating: {props.movie.avgRating} / 10</div>
-        <div>
-          Genres:{' '}
-          {props.movie.genres
-            ? props.movie.genres.map((id) => {
-                return <div style={{ display: 'inline', margin: '8px' }}>{genreName[id]}</div>;
-              })
-            : []}
+        <div className="poster-container" style={{ backgroundImage: `url(${props.movie.posterPath})` }}></div>
+        <div className="information-container">
+          <h2 className="title-container">{props.movie.name}</h2>
+          <div className="description-container">
+            <b>Description:</b> {props.movie.description}
+          </div>
+          <br />
+          <div>
+            <b>Year:</b> {props.movie.year}
+          </div>
+          <br />
+          <div>
+            <b>Rating: </b>
+            {props.movie.avgRating} / 10
+          </div>
+          <br />
+          <div className="genre-container">
+            <b>Genres:</b>{' '}
+            {props.movie.genres
+              ? props.movie.genres.map((id) => {
+                  return (
+                    <div key={Math.random()} style={{ display: 'inline', margin: '8px' }}>
+                      {genreName[id]}
+                    </div>
+                  );
+                })
+              : []}
+          </div>
+          <br />
+          <a href={props.movie.trailerPath} className="button" target="_blank">
+            <b>Watch Trailer</b>
+          </a>
+          <br />
         </div>
-        <a href={props.movie.trailerPath}>Trailer</a>
       </div>
     </React.Fragment>
   ) : (
     <React.Fragment>
       <div className="flex-item">
-        <h3>{props.show.name}</h3>
-        <img src={props.show.posterPath} alt="poster" width="100vw" height="150vh" />
-        <div>Description: {props.show.description}</div>
-        <div>
-          Seasons:{' '}
-          {props.show.genres
-            ? props.show.seasons.map((season) => {
-                return <div style={{ display: 'inline', margin: '8px' }}>{season}</div>;
-              })
-            : []}
+        <div className="poster-container" style={{ backgroundImage: `url(${props.show.posterPath})` }}></div>
+        <div className="information-container">
+          <h2 className="title-container">{props.show.name}</h2>
+          <div className="description-container">
+            <b>Description:</b> {props.show.description}
+          </div>
+          <br />
+          <div className="season-container" style={{ maxWidth: '25vw' }}>
+            <b>Seasons:</b>{' '}
+            {props.show.genres
+              ? props.show.seasons.map((season) => {
+                  return (
+                    <div key={Math.random()} style={{ display: 'inline', margin: '8px' }}>
+                      {season}
+                    </div>
+                  );
+                })
+              : []}
+          </div>
+          <br />
+          <div>
+            <b>Rating: </b>
+            {props.show.avgRating} / 10
+          </div>
+          <br />
+          <div className="genre-container">
+            <b>Genres:</b>{' '}
+            {props.show.genres
+              ? props.show.genres.map((id) => {
+                  return (
+                    <div key={Math.random()} style={{ display: 'inline', margin: '8px' }}>
+                      {genreName[id]}
+                    </div>
+                  );
+                })
+              : []}
+          </div>
+          <br />
         </div>
-        <div>Rating: {props.show.avgRating} / 10</div>
-        <div>
-          Genres:{' '}
-          {props.show.genres
-            ? props.show.genres.map((id) => {
-                return <div style={{ display: 'inline', margin: '8px' }}>{genreName[id]}</div>;
-              })
-            : []}
-        </div>
-        <div>Trailer?</div>
       </div>
     </React.Fragment>
   );

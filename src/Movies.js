@@ -6,7 +6,7 @@ function Movies(props) {
   let key = 0;
   return (
     <React.Fragment>
-      <h2>Movies</h2>
+      <h2 style={{ color: 'white' }}>Movies</h2>
       <div className="flex-container">
         {props.data.map((movie) => {
           // console.log(movie);
