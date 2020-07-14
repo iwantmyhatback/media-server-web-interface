@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useForm } from 'react';
+import React from 'react';
 
 function Years(props) {
   return (
-    <form>
+    <div className="Years">
       <label>Movie Year: </label>
       <select onChange={props.change} value={props.selected}>
         {props.years.map((year) => {
@@ -13,7 +13,7 @@ function Years(props) {
           );
         })}
       </select>
-    </form>
+    </div>
   );
 }
 

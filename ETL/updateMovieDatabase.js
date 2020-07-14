@@ -1,24 +1,13 @@
-const config = require('../config/config.js');
 const database = require('./addData.js');
 const dirPathFinder = require('../ETL/dirPathFinder.js');
 const videoAndSubPathAdd = require('../ETL/videoAndSubPathAdd.js');
 const tmdbLookup = require('./tmdbLookup.js');
 const trailerLookup = require('./trailerLookup.js');
-const fs = require('fs');
-const util = require('util');
-const axios = require('axios');
-
-const promreaddir = util.promisify(fs.readdir);
 
 let updater = async () => {
-  // let currentDatabase = {};
-  // let currentFiles = {};
-
   let currentDatabase = await database
     .getAllMovies()
     .then((returnedData) => {
-      // currentDatabase = returnedData.rows;
-      // console.log(returnedData.rows);
       return returnedData.rows;
     })
     .catch((error) => {
@@ -55,14 +44,13 @@ let updater = async () => {
 
   let newAdditons = currentFiles;
 
-  let promises = [];
   let count = 1;
   for (let key in newAdditons) {
     await videoAndSubPathAdd(newAdditons[key]);
     await tmdbLookup(newAdditons[key]);
     await trailerLookup(newAdditons[key], count++);
     await database.insertMovieRow(newAdditons[key]);
-    if (count >= 62) {
+    if (count >= 7) {
       count = 1;
     }
   }

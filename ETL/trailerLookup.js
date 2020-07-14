@@ -10,11 +10,13 @@ let trailerLookup = (movie, count) => {
     )
     .then((data) => {
       movie['trailerPath'] = `http://www.youtube.com/watch?v=${data.data.items[0].id.videoId}`;
-      console.log('ADDED', movie.name);
+      console.log(`*** Retrieved Trailer For ${movie.name} ***`);
       return movie;
     })
     .catch((error) => {
-      console.error('Youtube Error', movie.name, '----------', config.api.youtube[count]);
+      console.error(`!!! Error Retrieving Trailer For: ${movie.name} With API Key: ${config.api.youtube[count]} !!!`);
+      console.error(`!!! Reason: ${error.response.data.error.errors[0].reason} !!!`);
+      // console.log(error.response.data.error.errors);
     });
 };
 

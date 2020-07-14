@@ -1,7 +1,6 @@
 const config = require('../config/config.js');
 const fs = require('fs');
 const util = require('util');
-const axios = require('axios');
 
 const promreaddir = util.promisify(fs.readdir);
 let movieDirsObj = {};

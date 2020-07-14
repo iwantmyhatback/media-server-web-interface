@@ -16,13 +16,10 @@ let buildTrailers = async () => {
 
   let count = 1;
   for (let movie of nullTrailers) {
-    console.log(movie);
-    await trailerLookup(movie, count);
-    console.log(movie);
+    await trailerLookup(movie, count++);
     await database.updateTrailer(movie);
-    console.log(movie);
-    wait(1000);
-    if (count >= 10) {
+    wait(500);
+    if (count >= 7) {
       count = 1;
     }
   }

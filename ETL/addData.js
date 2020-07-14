@@ -18,17 +18,17 @@ const pool = new pg.Pool(config.pgCredentials);
 
 // MOVIES //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// module.exports.moviesByYear = (year) => {
-//   return pool
-//     .query('SELECT * FROM movies WHERE year=$1', [year])
-//     .then((data) => {
-//       // console.log(data);
-//       return data;
-//     })
-//     .catch((error) => {
-//       console.error(error);
-//     });
-// };
+module.exports.moviesByYear = (year) => {
+  return pool
+    .query('SELECT * FROM movies WHERE year=$1', [year])
+    .then((data) => {
+      // console.log(data);
+      return data;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
 
 module.exports.getYears = () => {
   return pool
@@ -96,7 +96,7 @@ module.exports.updateTrailer = (movie) => {
   return pool
     .query('UPDATE movies SET "trailerPath" = $1 WHERE name = $2', [movie.trailerPath, movie.name])
     .then((data) => {
-      console.log(`*** Updated Database For Row: ${movie.name}***`);
+      console.log(`*** Updated Database For Row: ${movie.name} ***`);
       return data;
     })
     .catch((error) => {
@@ -115,6 +115,20 @@ module.exports.truncateMovies = () => {
       console.error('!!! Error Truncating The movie Table !!!');
     });
 };
+
+// SEARCH MOVIES SERVER SIDE
+//
+// module.exports.searchMovies = (name) => {
+//   return pool
+//     .query(('SELECT * FROM movies WHERE name LIKE ' % ' || $1 || ') % ';', [name])
+//     .then((data) => {
+//       console.log('*** Retrieved All Rows Containing Search Term From The movie Table ***');
+//       return data;
+//     })
+//     .catch((error) => {
+//       console.error('!!! Error Retrieving All Search Term Rows From The movie Table !!!');
+//     });
+// };
 
 // TELEVISION ////////////////////////////////////////////////////////////////////////////////////////////////
 

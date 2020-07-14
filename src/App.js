@@ -1,12 +1,13 @@
-import React, { useState, useEffect, useForm } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Movies from './Movies.js';
 import Shows from './Shows.js';
-import Years from './Years.js';
-import Types from './Types.js';
+// const Movies = React.lazy(()=>import('./Movies.js'))
+// const Shows = React.lazy(()=>import('./Movies.js'))
+import NavBar from './NavBar.js';
 
 function App() {
-  const [searchTerm, setSearchTerm] = useState(undefined);
+  const [searchTerm, setSearchTerm] = useState('');
   const [movies, setMovies] = useState([]);
   const [shows, setShows] = useState([]);
   const [years, setYears] = useState([]);
@@ -15,27 +16,9 @@ function App() {
 
   // const [clicked, clickExpand] = useState(false);
 
-  // let search = (e) => {
-  //   setSearchTerm(e.target.value);
-  // };
-
-  // // REQUEST SEARCHED TV
-  // useEffect(() => {
-  //   console.log(searchTerm);
-  //   axios.get('/searchTV', { params: { searchTerm: searchTerm } }).then((data) => {
-  //     console.log(data);
-  //     setShows(data.data);
-  //   });
-  // }, [searchTerm]);
-
-  // // REQUEST SEARCHED MOVIES
-  // useEffect(() => {
-  //   console.log(searchTerm);
-  //   axios.get('/searchMovies', { params: { searchTerm: searchTerm } }).then((data) => {
-  //     console.log(data);
-  //     setMovies(data.data);
-  //   });
-  // }, [searchTerm]);
+  let search = (e) => {
+    setSearchTerm(e.target.value);
+  };
 
   // INITIAL MOVIE LIST REQUEST
   useEffect(() => {
@@ -78,18 +61,10 @@ function App() {
   return (
     <React.Fragment>
       <div className="CONTAINER">
-        <h1>Welcome To Tristan's Fabulous Film Factory</h1>
-        <Types change={changeMediaType} selected={type} />
-        {type === 'ALL' || type === 'Movies' ? <Years years={years} change={getByYear} selected={selectedYear} /> : <React.Fragment></React.Fragment>}
+        <NavBar changeMediaType={changeMediaType} type={type} years={years} getByYear={getByYear} selectedYear={selectedYear} search={search} />
 
-        {/* <form>
-        <div>
-          <input type="text" name="search" onChange={search} />
-        </div>
-      </form> */}
-
-        {type === 'ALL' || type === 'Movies' ? <Movies data={movies} /> : <React.Fragment></React.Fragment>}
-        {type === 'ALL' || type === 'TV' ? <Shows data={shows} /> : <React.Fragment></React.Fragment>}
+        {type === 'ALL' || type === 'Movies' ? <Movies data={movies} term={searchTerm} /> : <React.Fragment></React.Fragment>}
+        {type === 'ALL' || type === 'TV' ? <Shows data={shows} term={searchTerm} /> : <React.Fragment></React.Fragment>}
       </div>
     </React.Fragment>
   );
