@@ -1,6 +1,7 @@
 import React from 'react';
 import translateGenre from './translateGenre.js';
 import starRating from './starRating';
+import Watch from './Watch.js';
 
 function Instance(props) {
   if (props.movie) {
@@ -40,6 +41,7 @@ function Instance(props) {
               <a href={props.movie.trailerPath} className="button" target="_blank">
                 <b>Watch Trailer</b>
               </a>
+              {/* <Watch file={props.movie.dirPath} /> */}
               <br />
             </div>
           </div>

@@ -8,6 +8,11 @@ let NavBar = (props) => {
     <React.Fragment>
       <div className="NavBar">
         <h1>Welcome To Tristan's Fabulous Film Factory</h1>
+        <label>
+          Movie Count: {props.movieLength} Show Count: {props.showLength}
+          <br />
+        </label>
+        <br />
 
         <div className="filters">
           <Types change={props.changeMediaType} selected={props.type} />

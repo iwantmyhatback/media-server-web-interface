@@ -60,8 +60,17 @@ function App() {
 
   return (
     <React.Fragment>
-      <div className="CONTAINER">
-        <NavBar changeMediaType={changeMediaType} type={type} years={years} getByYear={getByYear} selectedYear={selectedYear} search={search} />
+      <div className="app-container">
+        <NavBar
+          changeMediaType={changeMediaType}
+          type={type}
+          years={years}
+          getByYear={getByYear}
+          selectedYear={selectedYear}
+          search={search}
+          movieLength={movies.length}
+          showLength={shows.length}
+        />
 
         {type === 'ALL' || type === 'Movies' ? <Movies data={movies} term={searchTerm} /> : <React.Fragment></React.Fragment>}
         {type === 'ALL' || type === 'TV' ? <Shows data={shows} term={searchTerm} /> : <React.Fragment></React.Fragment>}
