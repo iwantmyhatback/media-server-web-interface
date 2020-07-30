@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import translateGenre from './translateGenre.js';
 import starRating from './starRating';
 import Watch from './Watch.js';
 
 function Instance(props) {
+  const [clicked, setClicked] = useState(false);
+
   if (props.movie) {
     if (props.movie.name.toLowerCase().includes(props.term.toLowerCase())) {
-      return (
+      return clicked ? (
         <React.Fragment>
-          <div className="flex-item">
+          <div
+            className="flex-item"
+            onClick={() => {
+              setClicked(!clicked);
+            }}
+          >
             <div className="poster-container" style={{ backgroundImage: `url(${props.movie.posterPath})` }}></div>
             <div className="information-container">
               <h2 className="title-container">{props.movie.name}</h2>
@@ -17,12 +24,12 @@ function Instance(props) {
               </div>
               <br />
               <div>
-                <b>Year:</b> {props.movie.year}
+                <b>Rating: </b>
+                {starRating({ rating: props.movie.avgRating * 0.5, width: 15, height: 15 })}
               </div>
               <br />
               <div>
-                <b>Rating: </b>
-                {starRating({ rating: props.movie.avgRating * 0.5, width: 15, height: 15 })}
+                <b>Year:</b> {props.movie.year}
               </div>
               <br />
               <div className="genre-container">
@@ -46,15 +53,42 @@ function Instance(props) {
             </div>
           </div>
         </React.Fragment>
+      ) : (
+        <React.Fragment>
+          <div
+            className="flex-item-mini"
+            onClick={() => {
+              setClicked(!clicked);
+            }}
+          >
+            <div className="poster-container-mini" style={{ backgroundImage: `url(${props.movie.posterPath})` }}></div>
+            <div className="information-container">
+              <h1 className="title-container">{props.movie.name}</h1>
+              <div>
+                <b>Rating: </b>
+                {starRating({ rating: props.movie.avgRating * 0.5, width: 15, height: 15 })}
+              </div>
+              <br />
+              <div>
+                <b>Year:</b> {props.movie.year}
+              </div>
+            </div>
+          </div>
+        </React.Fragment>
       );
     } else {
       return <React.Fragment></React.Fragment>;
     }
   } else {
     if (props.show.name.toLowerCase().includes(props.term.toLowerCase())) {
-      return (
+      return clicked ? (
         <React.Fragment>
-          <div className="flex-item">
+          <div
+            className="flex-item"
+            onClick={() => {
+              setClicked(!clicked);
+            }}
+          >
             <div className="poster-container" style={{ backgroundImage: `url(${props.show.posterPath})` }}></div>
             <div className="information-container">
               <h2 className="title-container">{props.show.name}</h2>
@@ -93,6 +127,32 @@ function Instance(props) {
                   : []}
               </div>
               <br />
+            </div>
+          </div>
+        </React.Fragment>
+      ) : (
+        <React.Fragment>
+          <div
+            className="flex-item-mini"
+            onClick={() => {
+              setClicked(!clicked);
+            }}
+          >
+            <div className="poster-container-mini" style={{ backgroundImage: `url(${props.show.posterPath})` }}></div>
+            <div className="information-container">
+              <h1 className="title-container">{props.show.name}</h1>
+              <div className="season-container" style={{ maxWidth: '25vw' }}>
+                <b>Seasons:</b>{' '}
+                {props.show.genres
+                  ? props.show.seasons.map((season) => {
+                      return (
+                        <div key={Math.random()} style={{ display: 'inline', margin: '8px' }}>
+                          {season}
+                        </div>
+                      );
+                    })
+                  : []}
+              </div>
             </div>
           </div>
         </React.Fragment>
