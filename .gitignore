@@ -5,6 +5,7 @@ dist/*
 node_modules/
 *.log
 config.js
+config/
 
 # OS generated files
 .DS_Store
