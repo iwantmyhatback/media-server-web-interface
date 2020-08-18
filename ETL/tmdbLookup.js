@@ -6,7 +6,8 @@ let getMovieInfo = (movie) => {
     .get(`https://api.themoviedb.org/3/search/movie?api_key=${config.api.tmdb}&query=${movie.name}`)
     .then((returnedData) => {
       // ATTACH MOVIE DATA FROM TMDB TO OBJECT
-      let resultsCopy = returnedData.data.results.slice();
+      let resultsCopy = JSON.stringify(returnedData.data.results);
+      JSON.parse(resultsCopy);
 
       for (let i = 0; i < returnedData.data.results.length; i++) {
         if (returnedData.data.results[i].release_date === undefined) {
@@ -17,14 +18,22 @@ let getMovieInfo = (movie) => {
           i--;
         }
       }
-      if (returnedData.data.results.length > 0 ? returnedData.data.results[0] : resultsCopy[0]) {
-        movie['genres'] = returnedData.data.results[0]['genre_ids'];
-        movie['description'] = returnedData.data.results[0]['overview'];
-        movie['avgRating'] = returnedData.data.results[0]['vote_average'];
+      let relevantResults;
+
+      if (returnedData.data.results.length > 0) {
+        relevantResults = returnedData.data.results;
+      } else {
+        relevantResults = resultsCopy;
+      }
+
+      if (relevantResults[0]) {
+        movie['genres'] = relevantResults[0]['genre_ids'];
+        movie['description'] = relevantResults[0]['overview'];
+        movie['avgRating'] = relevantResults[0]['vote_average'];
         movie['posterPath'] = `https://image.tmdb.org/t/p/w500/${
-          returnedData.data.results[0]['poster_path'] ? returnedData.data.results[0]['poster_path'] : returnedData.data.results[0]['backdrop_path']
+          relevantResults[0]['poster_path'] ? relevantResults[0]['poster_path'] : relevantResults[0]['backdrop_path']
         }`;
-        if (returnedData.data.results[0]['poster_path'] === null && returnedData.data.results[0]['backdrop_path'] === null) {
+        if (relevantResults[0]['poster_path'] === null && relevantResults[0]['backdrop_path'] === null) {
           movie['posterPath'] = 'https://www.movienewz.com/img/films/poster-holder.jpg';
         }
       } else {
