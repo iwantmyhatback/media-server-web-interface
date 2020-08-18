@@ -6,6 +6,7 @@ let getMovieInfo = (movie) => {
     .get(`https://api.themoviedb.org/3/search/movie?api_key=${config.api.tmdb}&query=${movie.name}`)
     .then((returnedData) => {
       // ATTACH MOVIE DATA FROM TMDB TO OBJECT
+      let resultsCopy = returnedData.data.results.slice();
 
       for (let i = 0; i < returnedData.data.results.length; i++) {
         if (returnedData.data.results[i].release_date === undefined) {
@@ -16,7 +17,7 @@ let getMovieInfo = (movie) => {
           i--;
         }
       }
-      if (returnedData.data.results[0]) {
+      if (returnedData.data.results.length > 0 ? returnedData.data.results[0] : resultsCopy[0]) {
         movie['genres'] = returnedData.data.results[0]['genre_ids'];
         movie['description'] = returnedData.data.results[0]['overview'];
         movie['avgRating'] = returnedData.data.results[0]['vote_average'];
