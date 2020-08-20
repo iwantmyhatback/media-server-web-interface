@@ -13,6 +13,7 @@
   display: inline;
   padding: 10px 10px 10px 0px;
 }
+
 .Years {
   display: inline;
   padding: 10px;
@@ -23,8 +24,7 @@
   padding: 10px;
 }
 
-.Stars {
-}
+.Stars {}
 
 .sectionHead {
   color: white;
@@ -73,8 +73,8 @@ label {
 .poster-container {
   float: left;
   display: block;
-  padding-bottom: 15%;
-  padding-left: 10%;
+  padding-bottom: 22.5%;
+  padding-left: 15%;
   background-size: 100%;
   border-style: solid;
   /* border-radius: 40px; */
@@ -114,8 +114,7 @@ label {
   margin-top: 0px;
 }
 
-.app-container {
-}
+.app-container {}
 
 body {
   font-family: Arial, Helvetica, sans-serif;
