@@ -12,6 +12,11 @@ router.get('/mov/byYr', (req, res) => {
   model.listMoviesByYear(req, res);
 });
 
+router.get('/mov/byGenre', (req, res) => {
+  // console.log(req);
+  model.listMoviesByGenre(req, res);
+});
+
 router.get('/mov/yrs', (req, res) => {
   // console.log(req);
   model.listYears(req, res);

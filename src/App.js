@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Movies from './Movies.js';
 import Shows from './Shows.js';
-// const Movies = React.lazy(()=>import('./Movies.js'))
-// const Shows = React.lazy(()=>import('./Movies.js'))
 import NavBar from './NavBar.js';
+import { genreList, translateName } from './translateGenre';
 
 function App() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -12,9 +11,8 @@ function App() {
   const [shows, setShows] = useState([]);
   const [years, setYears] = useState([]);
   const [selectedYear, setSelectedYear] = useState('ALL');
+  const [selectedGenre, setSelectedGenre] = useState('ALL');
   const [type, setMediaType] = useState('ALL');
-
-  // const [clicked, clickExpand] = useState(false);
 
   let search = (e) => {
     setSearchTerm(e.target.value);
@@ -52,6 +50,15 @@ function App() {
     });
   }
 
+  // GET BY GENRE
+  function getByGenre(event) {
+    event.preventDefault();
+    setSelectedGenre(event.target.value);
+    axios.get('/mov/byGenre', { params: { searchGenre: translateName(event.target.value) } }).then((data) => {
+      setMovies(data.data);
+    });
+  }
+
   // CHOOSE MEDIA TYPE
   function changeMediaType(event) {
     event.preventDefault();
@@ -67,6 +74,9 @@ function App() {
           years={years}
           getByYear={getByYear}
           selectedYear={selectedYear}
+          genres={genreList}
+          getByGenre={getByGenre}
+          selectedGenre={selectedGenre}
           search={search}
           movieLength={movies.length}
           showLength={shows.length}

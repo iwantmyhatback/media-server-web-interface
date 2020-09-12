@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import translateGenre from './translateGenre.js';
+import { translateGenre } from './translateGenre.js';
 import starRating from './starRating';
-import Watch from './Watch.js';
+// import Watch from './Watch.js';
 
 function Instance(props) {
   const [clicked, setClicked] = useState(false);

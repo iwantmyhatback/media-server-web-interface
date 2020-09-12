@@ -2,6 +2,7 @@ import React from 'react';
 import Years from './Years.js';
 import Types from './Types.js';
 import Search from './Search.js';
+import Genres from './Genres.js';
 
 let NavBar = (props) => {
   return (
@@ -18,6 +19,11 @@ let NavBar = (props) => {
           <Types change={props.changeMediaType} selected={props.type} />
           {props.type === 'ALL' || props.type === 'Movies' ? (
             <Years years={props.years} change={props.getByYear} selected={props.selectedYear} />
+          ) : (
+            <React.Fragment></React.Fragment>
+          )}
+          {props.type === 'ALL' || props.type === 'Movies' ? (
+            <Genres genres={props.genres} change={props.getByGenre} selected={props.selectedGenre} />
           ) : (
             <React.Fragment></React.Fragment>
           )}

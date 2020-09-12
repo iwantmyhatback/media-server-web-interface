@@ -1,6 +1,4 @@
-const fs = require('fs');
-const database = require('../ETL/addData.js');
-const mediaPath = '/Volumes/share';
+const database = require('./database.js');
 
 module.exports.listMovies = (req, res) => {
   return database.getAllMovies().then((movieList) => {
@@ -23,6 +21,19 @@ module.exports.listMoviesByYear = (req, res) => {
     });
   } else {
     return database.moviesByYear(searchYear).then((movieList) => {
+      res.send(movieList.rows);
+    });
+  }
+};
+
+module.exports.listMoviesByGenre = (req, res) => {
+  let searchGenre = req.query.searchGenre;
+  if (searchGenre === 'ALL') {
+    return database.getAllMovies().then((movieList) => {
+      res.send(movieList.rows);
+    });
+  } else {
+    return database.moviesByGenre(searchGenre).then((movieList) => {
       res.send(movieList.rows);
     });
   }

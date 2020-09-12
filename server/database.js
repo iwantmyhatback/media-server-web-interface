@@ -18,6 +18,18 @@ const pool = new pg.Pool(config.pgCredentials);
 
 // MOVIES //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+module.exports.moviesByGenre = (genre) => {
+  return pool
+    .query('SELECT * FROM movies WHERE genres @> $1', [genre])
+    .then((data) => {
+      // console.log(data);
+      return data;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
+
 module.exports.moviesByYear = (year) => {
   return pool
     .query('SELECT * FROM movies WHERE year=$1', [year])
@@ -34,7 +46,7 @@ module.exports.getYears = () => {
   return pool
     .query('SELECT DISTINCT year FROM movies ORDER BY year desc')
     .then((data) => {
-      console.log('*** Retrieved List Of Years From movie Table ***');
+      // console.log('*** Retrieved List Of Years From movie Table ***');
       return data;
     })
     .catch((error) => {
@@ -46,7 +58,7 @@ module.exports.getAllMovies = () => {
   return pool
     .query('SELECT * FROM movies ORDER BY year desc')
     .then((data) => {
-      console.log('*** Retrieved All Rows From The movie Table ***');
+      // console.log('*** Retrieved All Rows From The movie Table ***');
       return data;
     })
     .catch((error) => {
