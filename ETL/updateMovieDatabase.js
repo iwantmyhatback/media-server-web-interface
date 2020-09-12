@@ -1,4 +1,4 @@
-const database = require('./addData.js');
+const database = require('../server/database.js');
 const dirPathFinder = require('../ETL/dirPathFinder.js');
 const videoAndSubPathAdd = require('../ETL/videoAndSubPathAdd.js');
 const tmdbLookup = require('./tmdbLookup.js');
