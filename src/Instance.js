@@ -6,8 +6,10 @@ import starRating from './starRating';
 function Instance(props) {
   const [clicked, setClicked] = useState(false);
 
+  //MOVIE///////////////////////////////////////////////////////////////////
   if (props.movie) {
     if (props.movie.name.toLowerCase().includes(props.term.toLowerCase())) {
+      // CLICKED EXPANDED TILE ////////////////////////////////////////////////////
       return clicked ? (
         <React.Fragment>
           <div
@@ -54,6 +56,7 @@ function Instance(props) {
           </div>
         </React.Fragment>
       ) : (
+        // UNCLICKED MINI TILE ////////////////////////////////////////////////////
         <React.Fragment>
           <div
             className="flex-item-mini"
@@ -80,7 +83,9 @@ function Instance(props) {
       return <React.Fragment></React.Fragment>;
     }
   } else {
+    // SHOW ///////////////////////////////////////////////////////////////////
     if (props.show.name.toLowerCase().includes(props.term.toLowerCase())) {
+      // CLICKED EXPANDED TILE ////////////////////////////////////////////////////
       return clicked ? (
         <React.Fragment>
           <div
@@ -131,6 +136,7 @@ function Instance(props) {
           </div>
         </React.Fragment>
       ) : (
+        // UNCLICKED MINI TILE ////////////////////////////////////////////////////
         <React.Fragment>
           <div
             className="flex-item-mini"
@@ -141,12 +147,12 @@ function Instance(props) {
             <div className="poster-container-mini" style={{ backgroundImage: `url(${props.show.posterPath})` }}></div>
             <div className="information-container">
               <h1 className="title-container">{props.show.name}</h1>
-              <div className="season-container" style={{ maxWidth: '25vw' }}>
+              <div className="season-container">
                 <b>Seasons:</b>{' '}
                 {props.show.genres
                   ? props.show.seasons.map((season) => {
                       return (
-                        <div key={Math.random()} style={{ display: 'inline', margin: '8px' }}>
+                        <div key={Math.random()} style={{ margin: '0px 8px 0px 8px' }}>
                           {season}
                         </div>
                       );
