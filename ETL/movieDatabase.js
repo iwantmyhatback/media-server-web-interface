@@ -1,5 +1,5 @@
 const config = require('../config/config.js');
-const database = require('./addData.js');
+const database = require('../server/database.js');
 const fs = require('fs');
 const util = require('util');
 const axios = require('axios');

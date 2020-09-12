@@ -1,4 +1,4 @@
-const database = require('./addData.js');
+const database = require('../server/database.js');
 const trailerLookup = require('./trailerLookup.js');
 
 function wait(ms) {
