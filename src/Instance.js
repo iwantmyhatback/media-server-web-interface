@@ -30,7 +30,7 @@ function Instance(props) {
               year={props.movie.year}
               genres={props.movie.genres}
               trailerPath={props.movie.trailerPath}
-              file={props.movie.dirPath}
+              dirPath={props.movie.dirPath}
             />
           </div>
         </React.Fragment>
