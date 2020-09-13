@@ -1,11 +1,12 @@
 import React from 'react';
-import Watch from './Watch.js';
+// import Watch from './Watch.js';
 import Trailer from './Trailer.js';
 import Genres from './Genres.js';
 import Year from './Year.js';
 import Rating from './Rating.js';
 import Description from './Description.js';
 import Title from './Title.js';
+import Favorite from './Favorite.js';
 
 function MovieInformation(props) {
   return (
@@ -14,13 +15,15 @@ function MovieInformation(props) {
       <Description description={props.description} />
       <br />
       <Rating avgRating={props.avgRating} />
+      <Favorite favorite={props.favorite} id={props.id} />
       <br />
       <Year year={props.year} />
       <br />
       <Genres genres={props.genres} />
       <br />
       <Trailer trailerPath={props.trailerPath} />
-      <Watch file={props.dirPath} />
+      {/* <Watch name={props.name} /> */}
+
       <br />
     </div>
   );

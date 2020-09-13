@@ -1,4 +1,4 @@
-// SETUP ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+// SETUP /////////////////////////////////////////////////////////////////////////////
 
 const config = require('../config/config.js');
 
@@ -16,11 +16,11 @@ Promise.promisifyAll(pg);
 
 const pool = new pg.Pool(config.pgCredentials);
 
-// MOVIES //////////////////////////////////////////////////////////////////////////////////////////////////////////
+// MOVIES ////////////////////////////////////////////////////////////////////////////
 
 module.exports.moviesByGenre = (genre) => {
   return pool
-    .query('SELECT * FROM movies WHERE genres @> $1', [genre])
+    .query('SELECT id, name, year, description, "avgRating", "posterPath", genres, "trailerPath", favorite FROM movies WHERE genres @> $1', [genre])
     .then((data) => {
       // console.log(data);
       return data;
@@ -32,7 +32,7 @@ module.exports.moviesByGenre = (genre) => {
 
 module.exports.moviesByYear = (year) => {
   return pool
-    .query('SELECT * FROM movies WHERE year=$1', [year])
+    .query('SELECT id, name, year, description, "avgRating", "posterPath", genres, "trailerPath", favorite FROM movies WHERE year=$1', [year])
     .then((data) => {
       // console.log(data);
       return data;
@@ -56,7 +56,7 @@ module.exports.getYears = () => {
 
 module.exports.getAllMovies = () => {
   return pool
-    .query('SELECT * FROM movies ORDER BY year desc')
+    .query('SELECT id, name, year, description, "avgRating", "posterPath", genres, "trailerPath", favorite FROM movies ORDER BY year desc')
     .then((data) => {
       // console.log('*** Retrieved All Rows From The movie Table ***');
       return data;
@@ -142,7 +142,7 @@ module.exports.truncateMovies = () => {
 //     });
 // };
 
-// TELEVISION ////////////////////////////////////////////////////////////////////////////////////////////////
+// TELEVISION ////////////////////////////////////////////////////////////////////////
 
 module.exports.insertShowRow = (show) => {
   return pool
@@ -176,6 +176,18 @@ module.exports.truncateShows = () => {
 module.exports.getAllShows = () => {
   return pool
     .query('SELECT * FROM shows ORDER BY name asc')
+    .then((data) => {
+      // console.log(data);
+      return data;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
+
+module.exports.setFavorite = (id) => {
+  return pool
+    .query('UPDATE movies SET favorite = NOT favorite WHERE id=$1', [id])
     .then((data) => {
       // console.log(data);
       return data;

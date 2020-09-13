@@ -37,4 +37,14 @@ router.get('/searchTV', (req, res) => {
   model.searchTv(req, res);
 });
 
+router.get('/watch/:videoName', (req, res) => {
+  // console.log(req);
+  model.watch(req, res);
+});
+
+router.get('/favorite/:videoID', (req, res) => {
+  // console.log(req);
+  model.favorite(req, res);
+});
+
 module.exports = router;

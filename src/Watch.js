@@ -21,7 +21,7 @@ function Watch(props) {
   } else {
     return (
       <React.Fragment>
-        <video key={props.file} id="videoPlayer" src={props.file} type="video/mp4" width="50%" muted="muted" controls></video>
+        <video key={props.name} id="videoPlayer" src={`/watch/${props.name}`} type="video/mp4" width="50%" muted="muted" controls></video>
       </React.Fragment>
     );
   }

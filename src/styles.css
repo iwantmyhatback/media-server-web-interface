@@ -155,3 +155,19 @@ body {
   text-decoration: none;
   color: initial;
 }
+
+.favorite-indicator-on {
+  color: gold;
+  font-size: 15pt;
+  display: inline;
+}
+
+.favorite-indicator-off {
+  color: black;
+  font-size: 15pt;
+  display: inline;
+}
+
+.favorite-label {
+  display: inline;
+}

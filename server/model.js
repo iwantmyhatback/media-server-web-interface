@@ -44,3 +44,12 @@ module.exports.listTv = (req, res) => {
     res.send(showList.rows);
   });
 };
+
+module.exports.watch = (req, res) => {
+  console.log(req.params.videoName);
+};
+
+module.exports.favorite = (req, res) => {
+  console.log(req.params.videoID);
+  database.setFavorite(req.params.videoID);
+};
