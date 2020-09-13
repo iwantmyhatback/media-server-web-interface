@@ -114,11 +114,26 @@ label {
 .season-container {
   display: flex;
   flex-wrap: wrap;
+  max-width: 80vw;
+}
+
+.season-item {
+  display: inline;
+  margin: 1%;
 }
 
 .title-container {
+  display: inline;
   max-width: 100%;
   margin-top: 0px;
+}
+
+.title {
+  margin-top: 0px;
+  margin-bottom: 2%;
+}
+.close {
+  float: right;
 }
 
 .app-container {
@@ -130,7 +145,7 @@ body {
   margin-top: 160px;
 }
 
-a.button {
+.button {
   border-style: solid;
   background-color: #d1d1d1;
   padding: 5px;

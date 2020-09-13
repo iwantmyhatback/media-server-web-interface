@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
-import { translateGenre } from './translateGenre.js';
-import starRating from './starRating';
-// import Watch from './Watch.js';
+import CloseButton from './CloseButton.js';
+import Poster from './Poster.js';
+import MovieInformation from './MovieInformation.js';
+import MovieInformationMini from './MovieInformationMini.js';
+import PosterMini from './PosterMini.js';
+import ShowInformation from './ShowInformation.js';
+import ShowInformationMini from './ShowInformationMini.js';
 
 function Instance(props) {
   const [clicked, setClicked] = useState(false);
@@ -12,51 +16,26 @@ function Instance(props) {
       // CLICKED EXPANDED TILE ////////////////////////////////////////////////////
       return clicked ? (
         <React.Fragment>
-          <div
-            className="flex-item"
-            onClick={() => {
-              setClicked(!clicked);
-            }}
-          >
-            <div className="poster-container" style={{ backgroundImage: `url(${props.movie.posterPath})` }}></div>
-            <div className="information-container">
-              <h2 className="title-container">{props.movie.name}</h2>
-              <div className="description-container">
-                <b>Description:</b> {props.movie.description}
-              </div>
-              <br />
-              <div>
-                <b>Rating: </b>
-                {starRating({ rating: props.movie.avgRating * 0.5, width: 15, height: 15 })}
-              </div>
-              <br />
-              <div>
-                <b>Year:</b> {props.movie.year}
-              </div>
-              <br />
-              <div className="genre-container">
-                <b>Genres:</b>{' '}
-                {props.movie.genres
-                  ? props.movie.genres.map((id) => {
-                      return (
-                        <div key={Math.random()} style={{ display: 'inline', margin: '8px' }}>
-                          {translateGenre(id)}
-                        </div>
-                      );
-                    })
-                  : []}
-              </div>
-              <br />
-              <a href={props.movie.trailerPath} className="button" target="_blank">
-                <b>Watch Trailer</b>
-              </a>
-              {/* <Watch file={props.movie.dirPath} /> */}
-              <br />
-            </div>
+          <div className="flex-item">
+            <Poster posterPath={props.movie.posterPath} />
+            <CloseButton
+              clicked={() => {
+                setClicked(!clicked);
+              }}
+            />
+            <MovieInformation
+              name={props.movie.name}
+              description={props.movie.description}
+              avgRating={props.movie.avgRating}
+              year={props.movie.year}
+              genres={props.movie.genres}
+              trailerPath={props.movie.trailerPath}
+              file={props.movie.dirPath}
+            />
           </div>
         </React.Fragment>
       ) : (
-        // UNCLICKED MINI TILE ////////////////////////////////////////////////////
+        // UNCLICKED MINI TILE /////////////////////////////////////////////////////
         <React.Fragment>
           <div
             className="flex-item-mini"
@@ -64,18 +43,8 @@ function Instance(props) {
               setClicked(!clicked);
             }}
           >
-            <div className="poster-container-mini" style={{ backgroundImage: `url(${props.movie.posterPath})` }}></div>
-            <div className="information-container">
-              <h1 className="title-container">{props.movie.name}</h1>
-              <div>
-                <b>Rating: </b>
-                {starRating({ rating: props.movie.avgRating * 0.5, width: 15, height: 15 })}
-              </div>
-              <br />
-              <div>
-                <b>Year:</b> {props.movie.year}
-              </div>
-            </div>
+            <PosterMini posterPath={props.movie.posterPath} />
+            <MovieInformationMini name={props.movie.name} avgRating={props.movie.avgRating} year={props.movie.year} />
           </div>
         </React.Fragment>
       );
@@ -88,51 +57,20 @@ function Instance(props) {
       // CLICKED EXPANDED TILE ////////////////////////////////////////////////////
       return clicked ? (
         <React.Fragment>
-          <div
-            className="flex-item"
-            onClick={() => {
-              setClicked(!clicked);
-            }}
-          >
-            <div className="poster-container" style={{ backgroundImage: `url(${props.show.posterPath})` }}></div>
-            <div className="information-container">
-              <h2 className="title-container">{props.show.name}</h2>
-              <div className="description-container">
-                <b>Description:</b> {props.show.description}
-              </div>
-              <br />
-              <div className="season-container" style={{ maxWidth: '25vw' }}>
-                <b>Seasons:</b>{' '}
-                {props.show.genres
-                  ? props.show.seasons.map((season) => {
-                      return (
-                        <div key={Math.random()} style={{ display: 'inline', margin: '8px' }}>
-                          {season}
-                        </div>
-                      );
-                    })
-                  : []}
-              </div>
-              <br />
-              <div>
-                <b>Rating: </b>
-                {starRating({ rating: props.show.avgRating * 0.5, width: 15, height: 15 })}
-              </div>
-              <br />
-              <div className="genre-container">
-                <b>Genres:</b>{' '}
-                {props.show.genres
-                  ? props.show.genres.map((id) => {
-                      return (
-                        <div key={Math.random()} style={{ display: 'inline', margin: '8px' }}>
-                          {translateGenre(id)}
-                        </div>
-                      );
-                    })
-                  : []}
-              </div>
-              <br />
-            </div>
+          <div className="flex-item">
+            <Poster posterPath={props.show.posterPath} />
+            <CloseButton
+              clicked={() => {
+                setClicked(!clicked);
+              }}
+            />
+            <ShowInformation
+              name={props.show.name}
+              description={props.show.description}
+              seasons={props.show.seasons}
+              avgRating={props.show.avgRating}
+              genres={props.show.genres}
+            />
           </div>
         </React.Fragment>
       ) : (
@@ -144,22 +82,8 @@ function Instance(props) {
               setClicked(!clicked);
             }}
           >
-            <div className="poster-container-mini" style={{ backgroundImage: `url(${props.show.posterPath})` }}></div>
-            <div className="information-container">
-              <h1 className="title-container">{props.show.name}</h1>
-              <div className="season-container">
-                <b>Seasons:</b>{' '}
-                {props.show.genres
-                  ? props.show.seasons.map((season) => {
-                      return (
-                        <div key={Math.random()} style={{ margin: '0px 8px 0px 8px' }}>
-                          {season}
-                        </div>
-                      );
-                    })
-                  : []}
-              </div>
-            </div>
+            <PosterMini posterPath={props.show.posterPath} />
+            <ShowInformationMini name={props.show.name} avgRating={props.show.avgRating} seasons={props.show.seasons} />
           </div>
         </React.Fragment>
       );

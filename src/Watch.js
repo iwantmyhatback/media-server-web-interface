@@ -1,9 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function Watch(props) {
   const [watch, setWatch] = useState(false);
-  if (!watch) {
-    return <button onClick={setWatch(!watch)}>Watch</button>;
+
+  useEffect(() => {
+    setWatch(false);
+  }, []);
+
+  if (watch === false) {
+    return (
+      <button
+        className="button"
+        onClick={() => {
+          setWatch(!watch);
+        }}
+      >
+        Watch
+      </button>
+    );
   } else {
     return (
       <React.Fragment>

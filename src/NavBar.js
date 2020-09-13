@@ -1,8 +1,8 @@
 import React from 'react';
-import Years from './Years.js';
-import Types from './Types.js';
-import Search from './Search.js';
-import Genres from './Genres.js';
+import Years from './YearsDropdown.js';
+import Types from './TypesDropdown.js';
+import Search from './SearchBar.js';
+import Genres from './GenresDropdown.js';
 
 let NavBar = (props) => {
   return (

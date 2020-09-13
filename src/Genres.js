@@ -1,19 +1,19 @@
 import React from 'react';
+import { translateGenre } from './translateGenre.js';
 
 function Genres(props) {
-  console.log(props);
   return (
-    <div className="Genres">
-      <label>Movie Genre: </label>
-      <select onChange={props.change} value={props.selected}>
-        {props.genres.map((genre) => {
-          return (
-            <option key={Math.random()} value={genre}>
-              {genre}
-            </option>
-          );
-        })}
-      </select>
+    <div className="genre-container">
+      <b>Genres:</b>{' '}
+      {props.genres
+        ? props.genres.map((id) => {
+            return (
+              <div key={Math.random()} style={{ display: 'inline', margin: '8px' }}>
+                {translateGenre(id)}
+              </div>
+            );
+          })
+        : []}
     </div>
   );
 }
