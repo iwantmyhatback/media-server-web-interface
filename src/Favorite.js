@@ -6,8 +6,6 @@ function Favorite(props) {
     axios.get(`/favorite/${props.id}`);
   }
 
-  console.log(props.favorite);
-
   return (
     <div className="favorite-container">
       {props.favorite ? (
