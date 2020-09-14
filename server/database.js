@@ -132,7 +132,7 @@ module.exports.setFavorite = (id) => {
   return pool
     .query('UPDATE movies SET favorite = NOT favorite WHERE id=$1', [id])
     .then((data) => {
-      // console.log(data);
+      console.log(data);
       return data;
     })
     .catch((error) => {
