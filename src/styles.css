@@ -134,6 +134,7 @@ label {
 }
 .close {
   float: right;
+  font-size: 18pt;
 }
 
 .app-container {
