@@ -45,7 +45,13 @@ function Instance(props) {
             }}
           >
             <PosterMini posterPath={props.movie.posterPath} />
-            <MovieInformationMini name={props.movie.name} avgRating={props.movie.avgRating} year={props.movie.year} />
+            <MovieInformationMini
+              name={props.movie.name}
+              avgRating={props.movie.avgRating}
+              year={props.movie.year}
+              favorite={props.movie.favorite}
+              id={props.movie.id}
+            />
           </div>
         </React.Fragment>
       );

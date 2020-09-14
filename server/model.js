@@ -50,6 +50,6 @@ module.exports.watch = (req, res) => {
 };
 
 module.exports.favorite = (req, res) => {
-  console.log(req.params.videoID);
+  // console.log(req.params.videoID);
   database.setFavorite(req.params.videoID);
 };

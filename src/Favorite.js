@@ -13,19 +13,19 @@ function Favorite(props) {
       {props.favorite ? (
         <div>
           <div className="favorite-label">
-            <b>My Approval: </b>
+            <b>Has Tristan Seen It?: </b>
           </div>
           <div className="favorite-indicator-on" onClick={flipFavorite}>
-            ★
+            ✔
           </div>
         </div>
       ) : (
         <div>
           <div className="favorite-label">
-            <b>My Approval: </b>
+            <b>Has Tristan Seen It?: </b>
           </div>
           <div className="favorite-indicator-off" onClick={flipFavorite}>
-            ☆
+            ✘
           </div>
         </div>
       )}
