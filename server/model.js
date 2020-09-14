@@ -47,9 +47,12 @@ module.exports.listTv = (req, res) => {
 
 module.exports.watch = (req, res) => {
   console.log(req.params.videoName);
+  //Needs Response
 };
 
 module.exports.favorite = (req, res) => {
   // console.log(req.params.videoID);
-  database.setFavorite(req.params.videoID);
+  return database.setFavorite(req.params.videoID).then(() => {
+    res.sendStatus(200);
+  });
 };

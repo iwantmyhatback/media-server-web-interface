@@ -128,6 +128,18 @@ module.exports.truncateMovies = () => {
     });
 };
 
+module.exports.setFavorite = (id) => {
+  return pool
+    .query('UPDATE movies SET favorite = NOT favorite WHERE id=$1', [id])
+    .then((data) => {
+      // console.log(data);
+      return data;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
+
 // SEARCH MOVIES SERVER SIDE
 //
 // module.exports.searchMovies = (name) => {
@@ -176,18 +188,6 @@ module.exports.truncateShows = () => {
 module.exports.getAllShows = () => {
   return pool
     .query('SELECT * FROM shows ORDER BY name asc')
-    .then((data) => {
-      // console.log(data);
-      return data;
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-};
-
-module.exports.setFavorite = (id) => {
-  return pool
-    .query('UPDATE movies SET favorite = NOT favorite WHERE id=$1', [id])
     .then((data) => {
       // console.log(data);
       return data;
