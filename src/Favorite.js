@@ -3,7 +3,14 @@ import axios from 'axios';
 
 function Favorite(props) {
   function flipFavorite() {
-    axios.get(`/favorite/${props.id}`);
+    axios
+      .get(`/favorite/${props.id}`)
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   return (
