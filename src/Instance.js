@@ -18,11 +18,6 @@ function Instance(props) {
         <React.Fragment>
           <div className="flex-item">
             <Poster posterPath={props.movie.posterPath} />
-            <CloseButton
-              clicked={() => {
-                setClicked(!clicked);
-              }}
-            />
             <MovieInformation
               name={props.movie.name}
               description={props.movie.description}
@@ -34,6 +29,11 @@ function Instance(props) {
               id={props.movie.id}
             />
           </div>
+          <CloseButton
+            clicked={() => {
+              setClicked(!clicked);
+            }}
+          />
         </React.Fragment>
       ) : (
         // UNCLICKED MINI TILE /////////////////////////////////////////////////////
