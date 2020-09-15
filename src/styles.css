@@ -162,20 +162,20 @@ body {
   color: initial;
 }
 
-.favorite-indicator-on {
+.seen-indicator-on {
   color: rgb(173, 255, 47, 0.7);
   font-size: 13pt;
   display: inline;
   cursor: pointer;
 }
 
-.favorite-indicator-off {
+.seen-indicator-off {
   color: rgb(255, 0, 0, 0.7);
   font-size: 13pt;
   display: inline;
   cursor: pointer;
 }
 
-.favorite-label {
+.seen-label {
   display: inline;
 }

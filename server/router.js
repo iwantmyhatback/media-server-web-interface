@@ -42,9 +42,9 @@ router.get('/watch/:videoName', (req, res) => {
   model.watch(req, res);
 });
 
-router.get('/favorite/:videoID', (req, res) => {
+router.get('/seen/:videoID', (req, res) => {
   // console.log(req);
-  model.favorite(req, res);
+  model.seen(req, res);
 });
 
 module.exports = router;

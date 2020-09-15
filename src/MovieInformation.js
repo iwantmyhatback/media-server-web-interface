@@ -6,7 +6,7 @@ import Year from './Year.js';
 import Rating from './Rating.js';
 import Description from './Description.js';
 import Title from './Title.js';
-import Favorite from './Favorite.js';
+import Seen from './Seen.js';
 
 function MovieInformation(props) {
   return (
@@ -15,7 +15,7 @@ function MovieInformation(props) {
       <Description description={props.description} />
       <br />
       <Rating avgRating={props.avgRating} />
-      <Favorite favorite={props.favorite} id={props.id} />
+      <Seen seen={props.seen} id={props.id} />
       <br />
       <Year year={props.year} />
       <br />

@@ -50,9 +50,9 @@ module.exports.watch = (req, res) => {
   //Needs Response
 };
 
-module.exports.favorite = (req, res) => {
+module.exports.seen = (req, res) => {
   // console.log(req.params.videoID);
-  return database.setFavorite(req.params.videoID).then(() => {
+  return database.setSeen(req.params.videoID).then(() => {
     res.sendStatus(200);
   });
 };

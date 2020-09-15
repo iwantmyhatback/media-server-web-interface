@@ -56,7 +56,7 @@ module.exports.getYears = () => {
 
 module.exports.getAllMovies = () => {
   return pool
-    .query('SELECT id, name, year, description, "avgRating", "posterPath", genres, "trailerPath", favorite FROM movies ORDER BY year desc')
+    .query('SELECT id, name, year, description, "avgRating", "posterPath", genres, "trailerPath", seen FROM movies ORDER BY year desc')
     .then((data) => {
       // console.log('*** Retrieved All Rows From The movie Table ***');
       return data;
@@ -128,11 +128,11 @@ module.exports.truncateMovies = () => {
     });
 };
 
-module.exports.setFavorite = (id) => {
+module.exports.setSeen = (id) => {
   return pool
-    .query('UPDATE movies SET favorite = NOT favorite WHERE id=$1', [id])
+    .query('UPDATE movies SET seen = NOT seen WHERE id=$1', [id])
     .then((data) => {
-      console.log(data);
+      // console.log(data);
       return data;
     })
     .catch((error) => {

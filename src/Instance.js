@@ -25,7 +25,7 @@ function Instance(props) {
               year={props.movie.year}
               genres={props.movie.genres}
               trailerPath={props.movie.trailerPath}
-              favorite={props.movie.favorite}
+              seen={props.movie.seen}
               id={props.movie.id}
             />
             <CloseButton
@@ -49,7 +49,7 @@ function Instance(props) {
               name={props.movie.name}
               avgRating={props.movie.avgRating}
               year={props.movie.year}
-              favorite={props.movie.favorite}
+              seen={props.movie.seen}
               id={props.movie.id}
             />
           </div>
