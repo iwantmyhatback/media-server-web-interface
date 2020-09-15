@@ -54,7 +54,7 @@ label {
 }
 
 .flex-item {
-  margin: 20px 20px 20px 35px;
+  margin: 2vw 2vw 2vw 2vw;
   padding: 40px;
   border-style: solid;
   border-color: rgba(38, 38, 38, 1);
@@ -133,7 +133,8 @@ label {
   margin-bottom: 2%;
 }
 .close {
-  float: left;
+  height: 100%;
+  float: right;
   font-size: 28pt;
   border-style: none;
   background-color: rgb(1, 1, 1, 0);

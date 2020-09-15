@@ -28,12 +28,12 @@ function Instance(props) {
               favorite={props.movie.favorite}
               id={props.movie.id}
             />
+            <CloseButton
+              clicked={() => {
+                setClicked(!clicked);
+              }}
+            />
           </div>
-          <CloseButton
-            clicked={() => {
-              setClicked(!clicked);
-            }}
-          />
         </React.Fragment>
       ) : (
         // UNCLICKED MINI TILE /////////////////////////////////////////////////////
