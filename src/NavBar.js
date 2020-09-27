@@ -8,7 +8,9 @@ let NavBar = (props) => {
   return (
     <React.Fragment>
       <div className="NavBar">
-        <h1>Welcome To Tristan's Fabulous Film Factory</h1>
+        <a href="http://local-share.local:3000">
+          <h1>Welcome To Tristan's Fabulous Film Factory</h1>
+        </a>
         <label>
           Movie Count: {props.movieLength} Show Count: {props.showLength}
           <br />
