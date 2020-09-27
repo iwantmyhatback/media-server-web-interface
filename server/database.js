@@ -20,7 +20,9 @@ const pool = new pg.Pool(config.pgCredentials);
 
 module.exports.moviesByGenre = (genre) => {
   return pool
-    .query('SELECT id, name, year, description, "avgRating", "posterPath", genres, "trailerPath", seen FROM movies WHERE genres @> $1', [genre])
+    .query('SELECT id, name, year, description, "avgRating", "posterPath", genres, "trailerPath", seen FROM movies WHERE genres @> $1 ORDER BY year desc', [
+      genre,
+    ])
     .then((data) => {
       // console.log(data);
       return data;
