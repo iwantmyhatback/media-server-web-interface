@@ -75,12 +75,10 @@ let buildCurrentCollection = () => {
         .then((updatedShows) => {
           let promises = [];
           for (let key in showsDirsObj) {
-            console.log(key);
             promises.push(
               axios
                 .get(`https://api.themoviedb.org/3/search/tv?api_key=ba2a8ed84b19a53a1a64ec40510fec3a&query=${key}`)
                 .then((responseData) => {
-                  console.log(responseData.data.results[0]);
                   return responseData.data.results[0];
                 })
                 .then((topResponseData) => {
