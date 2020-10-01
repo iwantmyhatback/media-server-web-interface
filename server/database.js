@@ -167,6 +167,7 @@ module.exports.insertShowRow = (show) => {
     )
     .then((data) => {
       // console.log(data);
+      console.log(`*** Inserted Row: ${show.name} Into The movie Table ***`);
       return data;
     })
     .catch((error) => {
