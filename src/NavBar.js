@@ -8,7 +8,7 @@ let NavBar = (props) => {
   return (
     <React.Fragment>
       <div className="NavBar">
-        <a href="http://local-share.local:3000">
+        <a href="http://local-share.local:3000" className="welcome">
           <h1>Welcome To Tristan's Fabulous Film Factory</h1>
         </a>
         <label>

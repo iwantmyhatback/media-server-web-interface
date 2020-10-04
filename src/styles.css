@@ -9,6 +9,10 @@
   width: 100%;
 }
 
+.welcome {
+  text-decoration: none;
+}
+
 .Types {
   display: inline;
   padding: 10px 10px 10px 0px;
@@ -29,8 +33,7 @@
   padding: 10px;
 }
 
-.Stars {
-}
+.Stars {}
 
 .sectionHead {
   color: white;
@@ -70,10 +73,18 @@ label {
   border-style: solid;
   border-color: rgba(38, 38, 38, 1);
   width: 40vw;
-  background: linear-gradient(270deg, rgba(209, 209, 209, 1) 0%, rgba(166, 166, 166, 1) 20%, rgba(38, 38, 38, 1) 100%);
+  background: linear-gradient(270deg, rgba(209, 209, 209, 1) 0%, 20%, rgba(38, 38, 38, 1) 100%);
   font-size: 8pt;
   justify: center;
   /* border-radius: 40px; */
+}
+
+.flex-item-mini:hover {
+  border-color: rgba(90, 90, 90);
+}
+
+.flex-item:hover {
+  border-color: rgba(90, 90, 90);
 }
 
 .poster-container {
@@ -132,6 +143,7 @@ label {
   margin-top: 0px;
   margin-bottom: 2%;
 }
+
 .close {
   height: 100%;
   float: right;
@@ -142,8 +154,7 @@ label {
   color: white;
 }
 
-.app-container {
-}
+.app-container {}
 
 body {
   font-family: Arial, Helvetica, sans-serif;
