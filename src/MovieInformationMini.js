@@ -10,7 +10,6 @@ function MovieInformationMini(props) {
       <TitleMini name={props.name} />
       <Rating avgRating={props.avgRating} />
       <Seen seen={props.seen} id={props.id} />
-      <br />
       <Year year={props.year} />
     </div>
   );
