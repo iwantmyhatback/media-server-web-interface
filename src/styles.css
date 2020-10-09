@@ -33,7 +33,8 @@
   padding: 10px;
 }
 
-.Stars {}
+.Stars {
+}
 
 .sectionHead {
   color: white;
@@ -68,7 +69,7 @@ label {
 }
 
 .flex-item-mini {
-  margin: 20px;
+  margin: 12px;
   padding: 20px;
   border-style: solid;
   border-color: rgba(38, 38, 38, 1);
@@ -154,7 +155,8 @@ label {
   color: white;
 }
 
-.app-container {}
+.app-container {
+}
 
 body {
   font-family: Arial, Helvetica, sans-serif;
