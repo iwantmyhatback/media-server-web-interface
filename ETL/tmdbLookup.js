@@ -14,8 +14,8 @@ let getMovieInfo = (movie) => {
           resultsCopy[i].release_date = '';
         }
         if (
-          !returnedData.data.results[i].release_date.includes(movie.year) ||
-          !returnedData.data.results[i].release_date.includes(movie.year + 1) ||
+          !returnedData.data.results[i].release_date.includes(movie.year) &&
+          !returnedData.data.results[i].release_date.includes(movie.year + 1) &&
           !returnedData.data.results[i].release_date.includes(movie.year - 1)
         ) {
           returnedData.data.results.splice(i, 1);
