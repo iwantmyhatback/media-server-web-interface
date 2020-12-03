@@ -1,12 +1,12 @@
 import React from 'react';
-import Watch from './Watch.js';
-import Trailer from './Trailer.js';
-import Genres from './Genres.js';
-import Year from './Year.js';
-import Rating from './Rating.js';
-import Description from './Description.js';
-import Title from './Title.js';
-import Seasons from './Seasons.js';
+// import Watch from './Watch.js';
+import Trailer from './InstanceInformation/Trailer.js';
+import Genres from './InstanceInformation/Genres.js';
+import Year from './InstanceInformation/Year.js';
+import Rating from './InstanceInformation/Rating.js';
+import Description from './InstanceInformation/Description.js';
+import Title from './InstanceInformation/Title.js';
+import Seasons from './InstanceInformation/Seasons.js';
 
 function ShowInformation(props) {
   return (

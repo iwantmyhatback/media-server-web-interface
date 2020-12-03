@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Movies from './Movies.js';
 import Shows from './Shows.js';
-import NavBar from './NavBar.js';
-import { genreList, translateName } from './translateGenre';
+import NavBar from './Navbar/NavBar.js';
+import { genreList, translateName } from './TranslationFunctions/translateGenre';
 
 function App() {
   const [searchTerm, setSearchTerm] = useState('');

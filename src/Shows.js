@@ -1,5 +1,5 @@
 import React from 'react';
-import Instance from './Instance.js';
+import Instance from './Instance/Instance.js';
 
 function Shows(props) {
   let key = 0;

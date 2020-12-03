@@ -1,5 +1,5 @@
 import React from 'react';
-import starRating from './starRating';
+import starRating from '../../TranslationFunctions/translateStarRating';
 
 function Rating(props) {
   return (

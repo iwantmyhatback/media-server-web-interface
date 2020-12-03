@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import CloseButton from './CloseButton.js';
 import Poster from './Poster.js';
+import PosterMini from './PosterMini.js';
 import MovieInformation from './MovieInformation.js';
 import MovieInformationMini from './MovieInformationMini.js';
-import PosterMini from './PosterMini.js';
 import ShowInformation from './ShowInformation.js';
 import ShowInformationMini from './ShowInformationMini.js';
 

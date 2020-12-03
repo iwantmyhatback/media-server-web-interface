@@ -1,9 +1,9 @@
 import React from 'react';
-import EMPTY_STAR from '../starAssets/empty-star.png';
-import FULL_STAR from '../starAssets/full-star.png';
-import HALF_STAR from '../starAssets/half-star.png';
-import QUARTER_STAR from '../starAssets/quarter-star.png';
-import THREE_QUARTER_STAR from '../starAssets/three-quarter-star.png';
+import EMPTY_STAR from './starAssets/empty-star.png';
+import FULL_STAR from './starAssets/full-star.png';
+import HALF_STAR from './starAssets/half-star.png';
+import QUARTER_STAR from './starAssets/quarter-star.png';
+import THREE_QUARTER_STAR from './starAssets/three-quarter-star.png';
 
 const StarRating = ({ rating, width, height }) => {
   let starArray = [];

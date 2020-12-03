@@ -28,15 +28,9 @@ module.exports.listMoviesByYear = (req, res) => {
 
 module.exports.listMoviesByGenre = (req, res) => {
   let searchGenre = req.query.searchGenre;
-  if (searchGenre === 'ALL') {
-    return database.getAllMovies().then((movieList) => {
-      res.send(movieList.rows);
-    });
-  } else {
-    return database.moviesByGenre(searchGenre).then((movieList) => {
-      res.send(movieList.rows);
-    });
-  }
+  return database.moviesByGenre(searchGenre).then((movieList) => {
+    res.send(movieList.rows);
+  });
 };
 
 module.exports.listTv = (req, res) => {

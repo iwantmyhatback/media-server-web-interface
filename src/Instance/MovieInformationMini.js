@@ -1,8 +1,8 @@
 import React from 'react';
-import Year from './Year.js';
-import Rating from './Rating.js';
-import TitleMini from './TitleMini.js';
-import Seen from './Seen.js';
+import Year from './InstanceInformation/Year.js';
+import Rating from './InstanceInformation/Rating.js';
+import TitleMini from './InstanceInformation/TitleMini.js';
+import Seen from './InstanceInformation/Seen.js';
 
 function MovieInformationMini(props) {
   return (

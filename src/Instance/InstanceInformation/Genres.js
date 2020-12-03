@@ -1,5 +1,5 @@
 import React from 'react';
-import { translateGenre } from './translateGenre.js';
+import { translateGenre } from '../../TranslationFunctions/translateGenre.js';
 
 function Genres(props) {
   return (

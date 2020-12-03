@@ -18,6 +18,23 @@ const pool = new pg.Pool(config.pgCredentials);
 
 // MOVIES ////////////////////////////////////////////////////////////////////////////
 
+// NEW FILTER FUNCTION //////////////////////////////////////////////
+module.exports.filteredMovies = (filters) => {
+  return pool
+    .query(
+      'SELECT id, name, year, description, "avgRating", "posterPath", genres, "trailerPath", seen FROM movies WHERE genres @> $1 AND year=coalesce(nullif($2, -1), year) ORDER BY year desc',
+      [filters.genre, filters.year]
+    )
+    .then((data) => {
+      console.log(data);
+      return data;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
+////////////////////////////////////////////////////////////////////
+
 module.exports.moviesByGenre = (genre) => {
   return pool
     .query('SELECT id, name, year, description, "avgRating", "posterPath", genres, "trailerPath", seen FROM movies WHERE genres @> $1 ORDER BY year desc', [

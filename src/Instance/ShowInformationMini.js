@@ -1,7 +1,7 @@
 import React from 'react';
-import Seasons from './Seasons.js';
-import Rating from './Rating.js';
-import TitleMini from './TitleMini.js';
+import Seasons from './InstanceInformation/Seasons.js';
+import Rating from './InstanceInformation/Rating.js';
+import TitleMini from './InstanceInformation/TitleMini.js';
 
 function ShowInformationMini(props) {
   return (
