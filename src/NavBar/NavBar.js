@@ -3,13 +3,14 @@ import Years from './YearsDropdown.js';
 import Types from './TypesDropdown.js';
 import Search from './SearchBar.js';
 import Genres from './GenresDropdown.js';
+import config from '../../config/config.js';
 
 let NavBar = (props) => {
   return (
     <React.Fragment>
       <div className="NavBar">
-        <a href="http://local-share.local:3000" className="welcome">
-          <h1>Welcome To Tristan's Fabulous Film Factory</h1>
+        <a href="/" className="welcome">
+          <h1>{`Welcome To ${config.owner}'s Fabulous Film Factory`}</h1>
         </a>
         <label>
           Movie Count: {props.movieLength} Show Count: {props.showLength}
