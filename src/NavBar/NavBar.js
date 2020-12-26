@@ -10,7 +10,7 @@ let NavBar = (props) => {
     <React.Fragment>
       <div className="NavBar">
         <a href="/" className="welcome">
-          <h1>{`Welcome To ${config.owner}'s Fabulous Film Factory`}</h1>
+          <h1>{`Welcome To ${config.owner}'s ${config.service}`}</h1>
         </a>
         <label>
           Movie Count: {props.movieLength} Show Count: {props.showLength}
