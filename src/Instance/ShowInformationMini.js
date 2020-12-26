@@ -5,7 +5,7 @@ import TitleMini from './InstanceInformation/TitleMini.js';
 
 function ShowInformationMini(props) {
   return (
-    <div className="information-container">
+    <div className="information-container-mini">
       <TitleMini name={props.name} />
       <Rating avgRating={props.avgRating} />
       <Seasons seasons={props.seasons} />

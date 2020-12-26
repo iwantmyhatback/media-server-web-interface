@@ -58,24 +58,24 @@ label {
 }
 
 .flex-item {
-  margin: .75vw;
-  padding: 2vw;
+  margin: 2vw 2vw 2vw 2vw;
+  padding: 40px;
   border-style: solid;
   border-color: rgba(38, 38, 38, 1);
-  width: 85vw;
+  width: 83vw;
   background: linear-gradient(270deg, rgba(209, 209, 209, 1) 0%, rgba(166, 166, 166, 1) 20%, rgba(38, 38, 38, 1) 100%);
-  font-size: 1vw;
+  font-size: 12pt;
   /* border-radius: 40px; */
 }
 
 .flex-item-mini {
-  margin: .75vw;
-  padding: 2vw;
+  margin: 12px;
+  padding: 20px;
   border-style: solid;
   border-color: rgba(38, 38, 38, 1);
   width: 40vw;
   background: linear-gradient(270deg, rgba(209, 209, 209, 1) 0%, 20%, rgba(38, 38, 38, 1) 100%);
-  font-size: .8vw;
+  font-size: 8pt;
   justify: center;
   /* border-radius: 40px; */
 }
@@ -91,32 +91,28 @@ label {
 .poster-container {
   float: left;
   display: block;
-  padding-bottom: 30%;
-  padding-left: 20%;
+  padding-bottom: 22.5%;
+  padding-left: 15%;
   background-size: 100%;
-  margin: -2vw 1vw -2vw -2vw;
+  border-style: solid;
+  /* border-radius: 40px; */
 }
 
 .poster-container-mini {
   float: left;
   display: block;
-  height: 15vw;
-  width: 10vw;
+  padding-bottom: 15%;
+  padding-left: 10%;
   background-size: 100%;
-  margin: -2vw 1vw -2vw -2vw;
+  border-style: solid;
+  /* border-radius: 40px; */
 }
-
 
 .information-container {
+  /* display: inline-block; */
   float: left;
-  padding: 0 1vw 0 1vw;
+  padding: 0px 20px 0px 20px;
   width: 70%;
-}
-
-.information-container-mini {
-  float: left;
-  padding: 0 1vw 0 1vw;
-  width: 60%;
 }
 
 .description-container {
@@ -125,10 +121,6 @@ label {
 
 .genre-container {
   max-width: 100%;
-}
-
-.rating {
-
 }
 
 .season-container {
@@ -156,7 +148,7 @@ label {
 .close {
   height: 100%;
   float: right;
-  font-size: 2vw;
+  font-size: 28pt;
   border-style: none;
   background-color: rgb(1, 1, 1, 0);
   padding: 0px;
@@ -169,14 +161,13 @@ label {
 body {
   font-family: Arial, Helvetica, sans-serif;
   background-color: #171717;
-  margin-top: 180px;
+  margin-top: 160px;
 }
 
 .button {
   border-style: solid;
-  border-width: .2vw;
   background-color: #d1d1d1;
-  padding: .25vw;
+  padding: 5px;
   -webkit-appearance: button;
   -moz-appearance: button;
   appearance: button;
@@ -186,14 +177,14 @@ body {
 
 .seen-indicator-on {
   color: rgb(173, 255, 47, 0.7);
-  font-size: 2vw;
+  font-size: 13pt;
   display: inline;
   cursor: pointer;
 }
 
 .seen-indicator-off {
   color: rgb(255, 0, 0, 0.7);
-  font-size: 2vw;
+  font-size: 13pt;
   display: inline;
   cursor: pointer;
 }

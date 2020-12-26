@@ -3,9 +3,9 @@ import starRating from '../../TranslationFunctions/translateStarRating';
 
 function Rating(props) {
   return (
-    <div>
+    <div className="rating">
       <b>Rating: </b>
-      {starRating({ rating: props.avgRating * 0.5, width: 15, height: 15 })}
+      {starRating({ rating: props.avgRating * 0.5, width: '10vw', height: '10vw' })}
     </div>
   );
 }
