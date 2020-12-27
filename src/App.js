@@ -12,7 +12,7 @@ function App() {
   const [years, setYears] = useState([]);
   const [selectedYear, setSelectedYear] = useState('ALL');
   const [selectedGenre, setSelectedGenre] = useState('ALL');
-  const [type, setMediaType] = useState('ALL');
+  const [type, setMediaType] = useState('Movies');
 
   let search = (e) => {
     setSearchTerm(e.target.value);

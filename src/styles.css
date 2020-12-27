@@ -13,9 +13,19 @@
   text-decoration: none;
 }
 
+.filters {
+  display: grid;
+  gap: 0vw;
+  grid-template-columns: 20vw 20vw 20vw 20vw ;
+}
+
 .Types {
   display: inline;
   padding: 10px 10px 10px 0px;
+}
+
+.Types select{
+  width: 14vw;
 }
 
 .Years {
@@ -23,9 +33,17 @@
   padding: 10px;
 }
 
+.Years select{
+  width: 14vw;
+}
+
 .Genres {
   display: inline;
   padding: 10px;
+}
+
+.Genres select{
+  width: 14vw;
 }
 
 .Search {
@@ -33,9 +51,12 @@
   padding: 10px;
 }
 
-.Stars {
+.Search input{
+  width: 20vw;
 }
 
+.Stars {
+}
 .sectionHead {
   color: white;
   border-top: solid #252525;
@@ -185,17 +206,19 @@ body {
 }
 
 .seen-indicator-on {
-  color: rgb(173, 255, 47, 0.7);
+  color: #999999;
   font-size: 2vw;
   display: inline;
   cursor: pointer;
+  text-shadow: 1px 1px black;
 }
 
 .seen-indicator-off {
-  color: rgb(255, 0, 0, 0.7);
+  color: #808080;
   font-size: 2vw;
   display: inline;
   cursor: pointer;
+  text-shadow: 1px 1px black;
 }
 
 .seen-label {
