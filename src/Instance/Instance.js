@@ -6,6 +6,7 @@ import MovieInformation from './MovieInformation.js';
 import MovieInformationMini from './MovieInformationMini.js';
 import ShowInformation from './ShowInformation.js';
 import ShowInformationMini from './ShowInformationMini.js';
+import styling from '../TranslationFunctions/viewportTextSize.js';
 
 function Instance(props) {
   const [clicked, setClicked] = useState(false);
@@ -16,7 +17,7 @@ function Instance(props) {
       // CLICKED EXPANDED TILE ////////////////////////////////////////////////////
       return clicked ? (
         <React.Fragment>
-          <div className="flex-item">
+          <div className="flex-item" style={{ fontSize: styling.largeViewPortToTextSize(document.documentElement.clientWidth) }}>
             <Poster posterPath={props.movie.posterPath} />
             <MovieInformation
               name={props.movie.name}
@@ -43,6 +44,7 @@ function Instance(props) {
             onClick={() => {
               setClicked(!clicked);
             }}
+            style={{ fontSize: styling.miniViewPortToTextSize(document.documentElement.clientWidth) }}
           >
             <PosterMini posterPath={props.movie.posterPath} />
             <MovieInformationMini

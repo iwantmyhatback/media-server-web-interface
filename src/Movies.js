@@ -5,7 +5,7 @@ function Movies(props) {
   let key = 0;
   return (
     <React.Fragment>
-      <h2 className="sectionHead">Movies</h2>
+      <h2 className="section-head">Movies</h2>
       <div className="flex-container">
         {props.data.map((movie) => {
           return <Instance id={movie.id} movie={movie} term={props.term} key={key++} />;
