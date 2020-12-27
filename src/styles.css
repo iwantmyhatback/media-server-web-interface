@@ -62,7 +62,7 @@ label {
   padding: 2vw;
   border-style: solid;
   border-color: rgba(38, 38, 38, 1);
-  width: 85vw;
+  width: 86vw;
   background: linear-gradient(270deg, rgba(209, 209, 209, 1) 0%, rgba(166, 166, 166, 1) 20%, rgba(38, 38, 38, 1) 100%);
   font-size: 1vw;
   /* border-radius: 40px; */
@@ -156,7 +156,7 @@ label {
 .close {
   height: 100%;
   float: right;
-  font-size: 2vw;
+  font-size: 2.5vw;
   border-style: none;
   background-color: rgb(1, 1, 1, 0);
   padding: 0px;
