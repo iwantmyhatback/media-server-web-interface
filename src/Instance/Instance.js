@@ -66,7 +66,7 @@ function Instance(props) {
       // CLICKED EXPANDED TILE ////////////////////////////////////////////////////
       return clicked ? (
         <React.Fragment>
-          <div className="flex-item">
+          <div className="flex-item" style={{ fontSize: styling.largeViewPortToTextSize(document.documentElement.clientWidth) }}>
             <Poster posterPath={props.show.posterPath} />
             <CloseButton
               clicked={() => {
@@ -90,6 +90,7 @@ function Instance(props) {
             onClick={() => {
               setClicked(!clicked);
             }}
+            style={{ fontSize: styling.miniViewPortToTextSize(document.documentElement.clientWidth) }}
           >
             <PosterMini posterPath={props.show.posterPath} />
             <ShowInformationMini name={props.show.name} avgRating={props.show.avgRating} seasons={props.show.seasons} />
