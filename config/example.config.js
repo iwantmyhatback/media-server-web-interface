@@ -1,6 +1,8 @@
 const api = {
   youtube: {
+    // Allows for multiple youtube API keys if you are hitting the maximum requests per day when building your database (current allocation is 1000 requests per day)
     1: process.env.YOUTUBE_API_KEY,
+    2: process.env.YOUTUBE_API_KEY,
   },
   tmdb: process.env.TMDB_API_KEY,
 };
