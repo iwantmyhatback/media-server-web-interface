@@ -1,18 +1,22 @@
 let styling = {};
 
 styling.miniViewPortToTextSize = (portSize) => {
-  if (portSize <= 1000) {
+  if (portSize <= 650) {
     return '1.25vw';
+  } else if (portSize <= 1300) {
+    return '.95vw';
   } else {
     return '.6vw';
   }
 };
 
 styling.largeViewPortToTextSize = (portSize) => {
-  if (portSize <= 1000) {
+  if (portSize <= 650) {
     return '2vw';
+  } else if (portSize <= 1300) {
+    return '1.5vw';
   } else {
-    return '1vw';
+    return '.1vw';
   }
 };
 
@@ -34,6 +38,16 @@ styling.largeViewPortToPosterSize = (portSize) => {
     increment = 10;
   }
   return increment;
+};
+
+styling.viewPortToSymbolSize = (portSize) => {
+  if (portSize <= 650) {
+    return '2vw';
+  } else if (portSize <= 1300) {
+    return '1.5vw';
+  } else {
+    return '1vw';
+  }
 };
 
 export default styling;

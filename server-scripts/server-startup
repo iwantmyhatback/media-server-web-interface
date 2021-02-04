@@ -1,0 +1,16 @@
+#! /bin/bash
+
+sudo git -C ~/media-server-web-interface pull origin master
+sudo apt update -y
+sudo apt upgrade -y
+sudo docker stop process.env.DATABASE-CONTAINER
+sudo docker start process.env.DATABASE-CONTAINER
+cd ~/media-server-web-interface
+npm run build-dev
+sudo pm2 kill
+sudo pm2 start node ~/media-server-web-interface/server/index.js
+echo "*** STARTING MOVIE DATABASE UPDATE ***"
+node ~/media-server-web-interface/ETL/updateMovieDatabase.js
+echo "*** STARTING SHOW DATABASE UPDATE ***"
+node ~/media-server-web-interface/ETL/showDatabase.js
+echo "*** COMPLETED DATABASE UPDATES ***"

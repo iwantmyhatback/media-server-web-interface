@@ -6,7 +6,7 @@ node_modules/
 *.log
 config.js
 media-serve-config.js
-config/
+
 
 # OS generated files
 .DS_Store

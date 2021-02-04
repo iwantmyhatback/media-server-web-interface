@@ -1,0 +1,7 @@
+#! /bin/bash
+
+echo "*** STARTING MOVIE DATABASE UPDATE ***"
+node ~/media-server-web-interface/ETL/updateMovieDatabase.js
+echo "*** STARTING SHOW DATABASE UPDATE ***"
+node ~/media-server-web-interface/ETL/showDatabase.js
+echo "*** COMPLETED DATABASE UPDATES ***"
