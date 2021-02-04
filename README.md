@@ -2,7 +2,7 @@
 
 I have a large collection of movies and television show files that I host on a local [Debian](https://www.debian.org) server providing streaming to all internal networked devices via SMB ([Samba](https://www.samba.org)) and DLNA ([MiniDLNA](https://help.ubuntu.com/community/MiniDLNA)). After a certain amount of file accumulation it became near impossible to browse the drives effectively through the file system as the list was massive and provided very little in terms of filtering or description.
 
-I eventually decided that I needed a network accessible browsing alternative to be able to select files for viewing when browsing the content. I developed this single page app, which pulls file information directly from the filesystem and strips the Title and Year of realease from the file names. Files must be STRICTLY named and contained in the following format for for the ETL process to work
+I eventually decided that I needed a network accessible browsing alternative to be able to select files for viewing when browsing the content. I developed this single page app using [Javascript](https://www.javascript.com), [React](https://reactjs.org), and [Node](https://nodejs.org/en/). The pulls file information directly from the filesystem and strips the Title and Year of realease from the file names. Files must be STRICTLY named and contained in the following format for for the ETL process to work
 
 - "Movies"(Directory)/"Movie Title [Release Year]"(Directory)/"Movie Title [Release Year]".mp4/avi/mkv(File)
 - "TV"(Directory)/"Show Title"(Directory)/"Show Season XX"/Episode Title.mp4/avi/mkv(File)
