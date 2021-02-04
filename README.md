@@ -11,3 +11,5 @@ The display scales dependent on the viewport dimentions of the device that visit
 ![Scaling-Example](/img/scaling-example.png)
 
 Includes filtering of all titles by Media Type and Search strings, and movies are filterable by Movie Year and Movie Genre.
+
+![filtering-example](/img/filtering-example.gif)
