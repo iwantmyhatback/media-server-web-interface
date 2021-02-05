@@ -4,9 +4,9 @@ I have a large collection of movies and television show files that I host on a l
 
 I eventually decided that I needed a network accessible browsing alternative to be able to select files for viewing when browsing the content. I developed this single page app using [Javascript](https://www.javascript.com), [React](https://reactjs.org), and [Node](https://nodejs.org/en/).
 
-The app pulls file information directly from the filesystem and strips the Title and Year of release from the file names. Files must be STRICTLY named and contained in the following format for for the ETL process to work
+The app pulls the media's information directly from the file system and strips the Title and Year of release from the file names. Files must be STRICTLY named and contained in the following format for for the ETL process to work
 
-- "Movies"(Directory)/"Movie Title [Release Year]"(Directory)/"Movie Title [Release Year]".mp4/avi/mkv(File)
+- "Movies"(Directory)/"Movie Title [YYYY]"(Directory)/"Movie Title [YYYY]".mp4/avi/mkv(File)
 - "TV"(Directory)/"Show Title"(Directory)/"Season ##"/Episode Title.mp4/avi/mkv(File)
 
 The app then proceeds to compile information from [TMDB's API](https://developers.themoviedb.org/3/getting-started/introduction) for Posters, ratings, descriptions, and genres and [Youtube's API](https://developers.google.com/youtube/v3) for trailers to a [Postgres](https://www.postgresql.org) database and serves them up to the user in a browsable and filterable format.
