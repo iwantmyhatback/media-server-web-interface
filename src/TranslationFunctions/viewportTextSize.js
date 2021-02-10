@@ -16,7 +16,7 @@ styling.largeViewPortToTextSize = (portSize) => {
   } else if (portSize <= 1300) {
     return '1.5vw';
   } else {
-    return '.1vw';
+    return '1vw';
   }
 };
 
