@@ -3,8 +3,8 @@
 sudo git -C ~/media-server-web-interface pull origin master
 sudo apt update -y
 sudo apt upgrade -y
-sudo docker stop process.env.DATABASE_CONTAINER
-sudo docker start process.env.DATABASE_CONTAINER
+sudo docker stop $DATABASE_CONTAINER
+sudo docker start $DATABASE_CONTAINER
 cd ~/media-server-web-interface
 npm run build-dev
 sudo pm2 kill
