@@ -11,16 +11,18 @@ let updater = async () => {
       return returnedData.rows;
     })
     .catch((error) => {
-      console.error('!!! There Was An Error Fetching Current Database --Line 22-- !!!');
+      console.error('!!! There Was An Error Fetching Current Database --Line 14-- !!!');
     });
 
   let currentFiles = await dirPathFinder()
     .then((returnedData) => {
       // currentFiles = returnedData;
+      console.log(returnedData);
       return returnedData;
     })
     .catch((error) => {
-      console.error('!!! There Was An Error Fetching Movie File List --Line 32-- !!!');
+      console.log(error);
+      console.error('!!! There Was An Error Fetching Movie File List --Line 23-- !!!');
     })
     .then((returnedData) => {
       for (let key in returnedData) {
@@ -30,7 +32,7 @@ let updater = async () => {
       return returnedData;
     })
     .catch((error) => {
-      console.error('!!! There Was An Error Splitting Name Information From File Name --Line 40-- !!!');
+      console.error('!!! There Was An Error Splitting Name Information From File Name --Line 33-- !!!');
     });
 
   for (let movie of currentDatabase) {
