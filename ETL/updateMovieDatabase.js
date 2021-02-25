@@ -16,25 +16,19 @@ let updater = async () => {
 
   let currentFiles = await dirPathFinder()
     .then((returnedData) => {
-      // currentFiles = returnedData;
-      console.log(returnedData);
       return returnedData;
     })
     .catch((error) => {
-      console.log(error);
       console.error('!!! There Was An Error Fetching Movie File List --Line 23-- !!!');
     })
     .then((returnedData) => {
       for (let key in returnedData) {
-        console.log(returnedData[key]);
         returnedData[key]['name'] = key.split('[')[0].trim();
         returnedData[key]['year'] = key.split('[')[1].slice(0, -1);
-        console.log(returnedData[key]);
       }
       return returnedData;
     })
     .catch((error) => {
-      console.log(error);
       console.error('!!! There Was An Error Splitting Name Information From File Name --Line 33-- !!!');
     });
 
