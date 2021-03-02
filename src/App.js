@@ -45,6 +45,7 @@ function App() {
   function getByYear(event) {
     event.preventDefault();
     setSelectedYear(event.target.value);
+    setSelectedGenre(event.target.value);
   }
 
   useEffect(() => {
@@ -57,6 +58,7 @@ function App() {
   function getByGenre(event) {
     event.preventDefault();
     setSelectedGenre(event.target.value);
+    setSelectedYear(event.target.value);
   }
 
   useEffect(() => {
