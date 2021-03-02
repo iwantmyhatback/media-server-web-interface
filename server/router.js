@@ -19,7 +19,7 @@ router.get('/mov/byGenre', (req, res) => {
 
 router.get('/mov/yrs', (req, res) => {
   // console.log(req);
-  model.listMoviesNewFilterFunction(req, res);
+  model.listYears(req, res);
 });
 
 router.get('/tv', (req, res) => {
