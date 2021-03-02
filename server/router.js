@@ -17,17 +17,28 @@ router.get('/tv', (req, res) => {
   model.listTv(req, res);
 });
 
-router.get('/watch/:videoName', (req, res) => {
-  // console.log(req);
-  model.watch(req, res);
-});
-
 router.get('/seen/:videoID', (req, res) => {
   // console.log(req);
   model.seen(req, res);
 });
 
 module.exports = router;
+
+//////// POSSIBLE FUNCTIONALITY ADDITIONS /////////////////////
+
+// WATCH FILE (NOT IMPLEMENTED)
+//
+// router.get('/watch/:videoName', (req, res) => {
+//   // console.log(req);
+//   model.watch(req, res);
+// });
+
+// SEARCH TV SERVER SIDE (NOT IMPLEMENTED)
+//
+// router.get('/searchTV', (req, res) => {
+//   // console.log(req);
+//   model.searchTv(req, res);
+// });
 
 //////// FORMER FUNCTIONS /////////////////////////////////////
 
@@ -38,11 +49,6 @@ module.exports = router;
 //   model.searchMovies(req, res);
 // });
 //
-// SEARCH TV SERVER SIDE (NOT IMPLEMENTED)
-// router.get('/searchTV', (req, res) => {
-//   // console.log(req);
-//   model.searchTv(req, res);
-// });
 //
 // GET MOVIES BY YEAR (OLD FUNCTION)
 //

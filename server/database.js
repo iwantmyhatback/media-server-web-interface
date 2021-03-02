@@ -30,7 +30,8 @@ module.exports.filteredMovies = (filters) => {
       return data;
     })
     .catch((error) => {
-      console.error(error);
+      // console.error(error);
+      console.error('!!! Error Retrieving Filtered Movies From Database !!!');
     });
 };
 
@@ -59,6 +60,18 @@ module.exports.setSeen = (id) => {
 };
 
 // MOVIE ETL FUNCTIONALITY
+
+module.exports.getAllMovies = () => {
+  return pool
+    .query('SELECT id, name, year, description, "avgRating", "posterPath", genres, "trailerPath", seen FROM movies ORDER BY year desc')
+    .then((data) => {
+      // console.log('*** Retrieved All Rows From The movie Table ***');
+      return data;
+    })
+    .catch((error) => {
+      console.error('!!! Error Retrieving All Rows From The movie Table !!!');
+    });
+};
 
 module.exports.insertMovieRow = (movie) => {
   return pool
@@ -124,22 +137,24 @@ module.exports.truncateMovies = () => {
 
 // TELEVISION QUERIES
 
-// module.exports.getAllShows = () => {
-//   return pool
-//     .query('SELECT * FROM shows ORDER BY name asc')
-//     .then((data) => {
-//       // console.log(data);
-//       return data;
-//     })
-//     .catch((error) => {
-//       console.error(error);
-//     });
-// };
-
 module.exports.filteredShows = (filters) => {
-  // console.log('database function receives:', filters);
   return pool
-    .query('SELECT id, name, genres, description, "posterPath",  seasons, "avgRating" FROM shows WHERE genres @> $1 ORDER BY name asc;', [filters.genre])
+    .query('SELECT id, name, genres, description, "posterPath",  seasons, "avgRating" FROM shows WHERE genres @> $1 ORDER BY name asc;', [filters.searchGenre])
+    .then((data) => {
+      // console.log(data);
+      return data;
+    })
+    .catch((error) => {
+      // console.error(error);
+      console.error('!!! Error Retrieving Filtered Shows From Database !!!');
+    });
+};
+
+// TV ETL FUNCTIONALITY
+
+module.exports.getAllShows = () => {
+  return pool
+    .query('SELECT * FROM shows ORDER BY name asc')
     .then((data) => {
       // console.log(data);
       return data;
@@ -148,8 +163,6 @@ module.exports.filteredShows = (filters) => {
       console.error(error);
     });
 };
-
-// TV ETL FUNCTIONALITY
 
 module.exports.insertShowRow = (show) => {
   return pool
@@ -181,21 +194,23 @@ module.exports.truncateShows = () => {
     });
 };
 
-//////// FORMER FUNCTIONS /////////////////////////////////////
+//////// POSSIBLE FUNCTIONALITY ADDITIONS /////////////////////
 
-// RETURN ALL MOVIES
+// SEARCH MOVIES SERVER SIDE (NOT IMPLEMENTED)
 //
-// module.exports.getAllMovies = () => {
+// module.exports.searchMovies = (name) => {
 //   return pool
-//     .query('SELECT id, name, year, description, "avgRating", "posterPath", genres, "trailerPath", seen FROM movies ORDER BY year desc')
+//     .query(('SELECT * FROM movies WHERE name LIKE ' % ' || $1 || ') % ';', [name])
 //     .then((data) => {
-//       // console.log('*** Retrieved All Rows From The movie Table ***');
+//       console.log('*** Retrieved All Rows Containing Search Term From The movie Table ***');
 //       return data;
 //     })
 //     .catch((error) => {
-//       console.error('!!! Error Retrieving All Rows From The movie Table !!!');
+//       console.error('!!! Error Retrieving All Search Term Rows From The movie Table !!!');
 //     });
 // };
+
+//////// FORMER FUNCTIONS /////////////////////////////////////
 
 // RETURN MOVIES BY GENRE (OLD METHOD)
 //
@@ -224,19 +239,5 @@ module.exports.truncateShows = () => {
 //     })
 //     .catch((error) => {
 //       console.error(error);
-//     });
-// };
-
-// SEARCH MOVIES SERVER SIDE (NOT IMPLEMENTED)
-//
-// module.exports.searchMovies = (name) => {
-//   return pool
-//     .query(('SELECT * FROM movies WHERE name LIKE ' % ' || $1 || ') % ';', [name])
-//     .then((data) => {
-//       console.log('*** Retrieved All Rows Containing Search Term From The movie Table ***');
-//       return data;
-//     })
-//     .catch((error) => {
-//       console.error('!!! Error Retrieving All Search Term Rows From The movie Table !!!');
 //     });
 // };

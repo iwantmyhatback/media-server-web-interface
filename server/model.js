@@ -24,19 +24,12 @@ module.exports.listYears = (req, res) => {
 };
 
 module.exports.listTv = (req, res) => {
+  // console.log('model function receives:', req.query);
   let searchGenre = req.query.searchGenre;
-  return database.filteredShows(searchGenre).then((showList) => {
+  return database.filteredShows({ searchGenre }).then((showList) => {
     res.send(showList.rows);
   });
 };
-
-// RETURN ALL SHOWS (OLD FUNCTION)
-//
-// module.exports.listTv = (req, res) => {
-//   return database.getAllShows().then((showList) => {
-//     res.send(showList.rows);
-//   });
-// };
 
 module.exports.seen = (req, res) => {
   // console.log(req.params.videoID);
@@ -44,6 +37,15 @@ module.exports.seen = (req, res) => {
     res.sendStatus(200);
   });
 };
+
+//////// POSSIBLE FUNCTIONALITY ADDITIONS /////////////////////
+
+// WATCH FILE (NOT IMPLEMENTED)
+//
+// module.exports.watch = (req, res) => {
+//   console.log(req.params.videoName);
+//   //Needs Response
+// };
 
 //////// FORMER FUNCTIONS /////////////////////////////////////
 
@@ -71,8 +73,10 @@ module.exports.seen = (req, res) => {
 //   }
 // };
 
-// WATCH STREAM (NOT IMPLEMENTED)
-// module.exports.watch = (req, res) => {
-//   console.log(req.params.videoName);
-//   //Needs Response
+// RETURN ALL SHOWS (OLD FUNCTION)
+//
+// module.exports.listTv = (req, res) => {
+//   return database.getAllShows().then((showList) => {
+//     res.send(showList.rows);
+//   });
 // };

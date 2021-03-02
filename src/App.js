@@ -18,6 +18,7 @@ function App() {
     setSearchTerm(e.target.value);
   };
 
+  // EXTERNAL REQUESTS //////////
   // MOVIE LIST REQUEST
   useEffect(() => {
     console.log('running');
@@ -26,14 +27,14 @@ function App() {
     });
   }, [selectedYear, selectedGenre]);
 
-  // INITIAL TV LIST REQUEST
+  // TELEVISION LIST REQUEST
   useEffect(() => {
     axios.get('/tv', { params: { searchGenre: translateName(selectedGenre) } }).then((data) => {
       setShows(data.data);
     });
   }, [selectedGenre]);
 
-  // INITIAL YEARS LIST
+  // INITIAL YEARS LIST REQUEST (POPULATE DROPDOWN)
   useEffect(() => {
     axios.get('/mov/yrs').then((data) => {
       setYears(data.data);
@@ -41,6 +42,7 @@ function App() {
     });
   }, []);
 
+  // CHANGE HANDLERS //////////
   // SET SELECTED YEAR ON CHANGE
   function handleYearChange(event) {
     event.preventDefault();
@@ -53,8 +55,8 @@ function App() {
     setSelectedGenre(event.target.value);
   }
 
-  // CHOOSE MEDIA TYPE
-  function changeMediaType(event) {
+  // SET SELECTED MEDIA TYPE ON CHANGE
+  function handleMediaTypeChange(event) {
     event.preventDefault();
     setMediaType(event.target.value);
   }
@@ -63,7 +65,7 @@ function App() {
     <React.Fragment>
       <div className="app-container">
         <NavBar
-          changeMediaType={changeMediaType}
+          handleMediaTypeChange={handleMediaTypeChange}
           type={type}
           years={years}
           handleYearChange={handleYearChange}
