@@ -14,12 +14,12 @@ router.get('/mov/byYr', (req, res) => {
 
 router.get('/mov/byGenre', (req, res) => {
   // console.log(req);
-  model.listMoviesByGenre(req, res);
+  model.listMoviesNewFilterFunction(req, res);
 });
 
 router.get('/mov/yrs', (req, res) => {
   // console.log(req);
-  model.listYears(req, res);
+  model.listMoviesNewFilterFunction(req, res);
 });
 
 router.get('/tv', (req, res) => {

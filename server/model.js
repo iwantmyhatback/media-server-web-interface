@@ -1,5 +1,14 @@
 const database = require('./database.js');
 
+module.exports.listMoviesNewFilterFunction = (req, res) => {
+  let searchYear = req.query.searchYear;
+  let searchGenre = req.query.searchGenre;
+
+  return database.filteredMovies({ genre: searchGenre, year: searchYear }).then((movieList) => {
+    res.send(movieList.rows);
+  });
+};
+
 module.exports.listMovies = (req, res) => {
   return database.getAllMovies().then((movieList) => {
     res.send(movieList.rows);
