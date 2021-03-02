@@ -1,4 +1,4 @@
-// SETUP /////////////////////////////////////////////////////////////////////////////
+// DATABASE ACCESS SETUP
 
 const config = require('../config/config.js');
 
@@ -16,9 +16,8 @@ Promise.promisifyAll(pg);
 
 const pool = new pg.Pool(config.pgCredentials);
 
-// MOVIES ////////////////////////////////////////////////////////////////////////////
+// MOVIES QUERIES
 
-// NEW FILTERED FUNCTION //////////////////////////////////////////////
 module.exports.filteredMovies = (filters) => {
   // console.log('database function receives:', filters);
   return pool
@@ -34,7 +33,6 @@ module.exports.filteredMovies = (filters) => {
       console.error(error);
     });
 };
-////////////////////////////////////////////////////////////////////
 
 module.exports.getYears = () => {
   return pool
@@ -48,17 +46,19 @@ module.exports.getYears = () => {
     });
 };
 
-module.exports.getAllMovies = () => {
+module.exports.setSeen = (id) => {
   return pool
-    .query('SELECT id, name, year, description, "avgRating", "posterPath", genres, "trailerPath", seen FROM movies ORDER BY year desc')
+    .query('UPDATE movies SET seen = NOT seen WHERE id=$1', [id])
     .then((data) => {
-      // console.log('*** Retrieved All Rows From The movie Table ***');
+      // console.log(data);
       return data;
     })
     .catch((error) => {
-      console.error('!!! Error Retrieving All Rows From The movie Table !!!');
+      console.error(error);
     });
 };
+
+// MOVIE ETL FUNCTIONALITY
 
 module.exports.insertMovieRow = (movie) => {
   return pool
@@ -122,9 +122,24 @@ module.exports.truncateMovies = () => {
     });
 };
 
-module.exports.setSeen = (id) => {
+// TELEVISION QUERIES
+
+// module.exports.getAllShows = () => {
+//   return pool
+//     .query('SELECT * FROM shows ORDER BY name asc')
+//     .then((data) => {
+//       // console.log(data);
+//       return data;
+//     })
+//     .catch((error) => {
+//       console.error(error);
+//     });
+// };
+
+module.exports.filteredShows = (filters) => {
+  // console.log('database function receives:', filters);
   return pool
-    .query('UPDATE movies SET seen = NOT seen WHERE id=$1', [id])
+    .query('SELECT id, name, genres, description, "posterPath",  seasons, "avgRating" FROM shows WHERE genres @> $1 ORDER BY name asc;', [filters.genre])
     .then((data) => {
       // console.log(data);
       return data;
@@ -134,7 +149,7 @@ module.exports.setSeen = (id) => {
     });
 };
 
-// TELEVISION ////////////////////////////////////////////////////////////////////////
+// TV ETL FUNCTIONALITY
 
 module.exports.insertShowRow = (show) => {
   return pool
@@ -166,19 +181,21 @@ module.exports.truncateShows = () => {
     });
 };
 
-module.exports.getAllShows = () => {
-  return pool
-    .query('SELECT * FROM shows ORDER BY name asc')
-    .then((data) => {
-      // console.log(data);
-      return data;
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-};
-
 //////// FORMER FUNCTIONS /////////////////////////////////////
+
+// RETURN ALL MOVIES
+//
+// module.exports.getAllMovies = () => {
+//   return pool
+//     .query('SELECT id, name, year, description, "avgRating", "posterPath", genres, "trailerPath", seen FROM movies ORDER BY year desc')
+//     .then((data) => {
+//       // console.log('*** Retrieved All Rows From The movie Table ***');
+//       return data;
+//     })
+//     .catch((error) => {
+//       console.error('!!! Error Retrieving All Rows From The movie Table !!!');
+//     });
+// };
 
 // RETURN MOVIES BY GENRE (OLD METHOD)
 //

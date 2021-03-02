@@ -24,10 +24,19 @@ module.exports.listYears = (req, res) => {
 };
 
 module.exports.listTv = (req, res) => {
-  return database.getAllShows().then((showList) => {
+  let searchGenre = req.query.searchGenre;
+  return database.filteredShows(searchGenre).then((showList) => {
     res.send(showList.rows);
   });
 };
+
+// RETURN ALL SHOWS (OLD FUNCTION)
+//
+// module.exports.listTv = (req, res) => {
+//   return database.getAllShows().then((showList) => {
+//     res.send(showList.rows);
+//   });
+// };
 
 module.exports.seen = (req, res) => {
   // console.log(req.params.videoID);

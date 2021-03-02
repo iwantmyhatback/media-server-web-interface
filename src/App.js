@@ -28,10 +28,10 @@ function App() {
 
   // INITIAL TV LIST REQUEST
   useEffect(() => {
-    axios.get('/tv').then((data) => {
+    axios.get('/tv', { params: { searchGenre: translateName(selectedGenre) } }).then((data) => {
       setShows(data.data);
     });
-  }, []);
+  }, [selectedGenre]);
 
   // INITIAL YEARS LIST
   useEffect(() => {
