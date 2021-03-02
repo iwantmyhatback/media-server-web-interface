@@ -45,7 +45,7 @@ function App() {
   function getByYear(event) {
     event.preventDefault();
     setSelectedYear(event.target.value);
-    axios.get('/mov/byYr', { params: { searchYear: selectedYear, searchGenre: translateName(selectedGenre) } }).then((data) => {
+    axios.get('/mov/byYr', { params: { searchYear: event.target.value, searchGenre: translateName(selectedGenre) } }).then((data) => {
       setMovies(data.data);
     });
   }
