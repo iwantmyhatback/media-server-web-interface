@@ -9,7 +9,7 @@ router.get('/mov', (req, res) => {
 
 router.get('/mov/byYr', (req, res) => {
   // console.log(req);
-  model.listMoviesByYear(req, res);
+  model.listMoviesNewFilterFunction(req, res);
 });
 
 router.get('/mov/byGenre', (req, res) => {
