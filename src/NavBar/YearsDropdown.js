@@ -4,7 +4,7 @@ function Years(props) {
   return (
     <div className="Years">
       <label>Movie Year: </label>
-      <select onChange={props.change} value={props.selected}>
+      <select onChange={props.handleYearChange} value={props.selected}>
         {props.years.map((year) => {
           return (
             <option key={Math.random()} value={year.year}>

@@ -18,22 +18,22 @@ function App() {
     setSearchTerm(e.target.value);
   };
 
-  // INITIAL MOVIE LIST REQUEST
+  // EXTERNAL REQUESTS //////////
+  // MOVIE LIST REQUEST
   useEffect(() => {
-    axios.get('/mov').then((data) => {
+    axios.get('/mov', { params: { searchYear: selectedYear, searchGenre: translateName(selectedGenre) } }).then((data) => {
       setMovies(data.data);
-      return data.data;
     });
-  }, []);
+  }, [selectedYear, selectedGenre]);
 
-  // INITIAL TV LIST REQUEST
+  // TELEVISION LIST REQUEST
   useEffect(() => {
-    axios.get('/tv').then((data) => {
+    axios.get('/tv', { params: { searchGenre: translateName(selectedGenre) } }).then((data) => {
       setShows(data.data);
     });
-  }, []);
+  }, [selectedGenre]);
 
-  // INITIAL YEARS LIST
+  // INITIAL YEARS LIST REQUEST (POPULATE DROPDOWN)
   useEffect(() => {
     axios.get('/mov/yrs').then((data) => {
       setYears(data.data);
@@ -41,32 +41,21 @@ function App() {
     });
   }, []);
 
-  // GET BY YEAR
-  function getByYear(event) {
+  // CHANGE HANDLERS //////////
+  // SET SELECTED YEAR ON CHANGE
+  function handleYearChange(event) {
     event.preventDefault();
     setSelectedYear(event.target.value);
   }
 
-  useEffect(() => {
-    axios.get('/mov/byYr', { params: { searchYear: selectedYear, searchGenre: translateName(selectedGenre) } }).then((data) => {
-      setMovies(data.data);
-    });
-  }, [selectedYear]);
-
-  // GET BY GENRE
-  function getByGenre(event) {
+  // SET SELECTED GENRE ON CHANGE
+  function handleGenreChange(event) {
     event.preventDefault();
     setSelectedGenre(event.target.value);
   }
 
-  useEffect(() => {
-    axios.get('/mov/byGenre', { params: { searchYear: selectedYear, searchGenre: translateName(selectedGenre) } }).then((data) => {
-      setMovies(data.data);
-    });
-  }, [selectedGenre]);
-
-  // CHOOSE MEDIA TYPE
-  function changeMediaType(event) {
+  // SET SELECTED MEDIA TYPE ON CHANGE
+  function handleMediaTypeChange(event) {
     event.preventDefault();
     setMediaType(event.target.value);
   }
@@ -75,13 +64,13 @@ function App() {
     <React.Fragment>
       <div className="app-container">
         <NavBar
-          changeMediaType={changeMediaType}
+          handleMediaTypeChange={handleMediaTypeChange}
           type={type}
           years={years}
-          getByYear={getByYear}
+          handleYearChange={handleYearChange}
           selectedYear={selectedYear}
           genres={genreList}
-          getByGenre={getByGenre}
+          handleGenreChange={handleGenreChange}
           selectedGenre={selectedGenre}
           search={search}
           movieLength={movies.length}

@@ -1,4 +1,4 @@
-// SETUP /////////////////////////////////////////////////////////////////////////////
+// DATABASE ACCESS SETUP
 
 const config = require('../config/config.js');
 
@@ -16,9 +16,8 @@ Promise.promisifyAll(pg);
 
 const pool = new pg.Pool(config.pgCredentials);
 
-// MOVIES ////////////////////////////////////////////////////////////////////////////
+// MOVIES QUERIES
 
-// NEW FILTER FUNCTION //////////////////////////////////////////////
 module.exports.filteredMovies = (filters) => {
   // console.log('database function receives:', filters);
   return pool
@@ -31,34 +30,8 @@ module.exports.filteredMovies = (filters) => {
       return data;
     })
     .catch((error) => {
-      console.error(error);
-    });
-};
-////////////////////////////////////////////////////////////////////
-
-module.exports.moviesByGenre = (genre) => {
-  return pool
-    .query('SELECT id, name, year, description, "avgRating", "posterPath", genres, "trailerPath", seen FROM movies WHERE genres @> $1 ORDER BY year desc', [
-      genre,
-    ])
-    .then((data) => {
-      // console.log(data);
-      return data;
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-};
-
-module.exports.moviesByYear = (year) => {
-  return pool
-    .query('SELECT id, name, year, description, "avgRating", "posterPath", genres, "trailerPath", seen FROM movies WHERE year=$1', [year])
-    .then((data) => {
-      // console.log(data);
-      return data;
-    })
-    .catch((error) => {
-      console.error(error);
+      // console.error(error);
+      console.error('!!! Error Retrieving Filtered Movies From Database !!!');
     });
 };
 
@@ -73,6 +46,20 @@ module.exports.getYears = () => {
       console.error('!!! Error Retrieving List Of Years From movie Table');
     });
 };
+
+module.exports.setSeen = (id) => {
+  return pool
+    .query('UPDATE movies SET seen = NOT seen WHERE id=$1', [id])
+    .then((data) => {
+      // console.log(data);
+      return data;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
+
+// MOVIE ETL FUNCTIONALITY
 
 module.exports.getAllMovies = () => {
   return pool
@@ -148,9 +135,26 @@ module.exports.truncateMovies = () => {
     });
 };
 
-module.exports.setSeen = (id) => {
+// TELEVISION QUERIES
+
+module.exports.filteredShows = (filters) => {
   return pool
-    .query('UPDATE movies SET seen = NOT seen WHERE id=$1', [id])
+    .query('SELECT id, name, genres, description, "posterPath",  seasons, "avgRating" FROM shows WHERE genres @> $1 ORDER BY name asc;', [filters.searchGenre])
+    .then((data) => {
+      // console.log(data);
+      return data;
+    })
+    .catch((error) => {
+      // console.error(error);
+      console.error('!!! Error Retrieving Filtered Shows From Database !!!');
+    });
+};
+
+// TV ETL FUNCTIONALITY
+
+module.exports.getAllShows = () => {
+  return pool
+    .query('SELECT * FROM shows ORDER BY name asc')
     .then((data) => {
       // console.log(data);
       return data;
@@ -159,22 +163,6 @@ module.exports.setSeen = (id) => {
       console.error(error);
     });
 };
-
-// SEARCH MOVIES SERVER SIDE
-//
-// module.exports.searchMovies = (name) => {
-//   return pool
-//     .query(('SELECT * FROM movies WHERE name LIKE ' % ' || $1 || ') % ';', [name])
-//     .then((data) => {
-//       console.log('*** Retrieved All Rows Containing Search Term From The movie Table ***');
-//       return data;
-//     })
-//     .catch((error) => {
-//       console.error('!!! Error Retrieving All Search Term Rows From The movie Table !!!');
-//     });
-// };
-
-// TELEVISION ////////////////////////////////////////////////////////////////////////
 
 module.exports.insertShowRow = (show) => {
   return pool
@@ -206,14 +194,50 @@ module.exports.truncateShows = () => {
     });
 };
 
-module.exports.getAllShows = () => {
-  return pool
-    .query('SELECT * FROM shows ORDER BY name asc')
-    .then((data) => {
-      // console.log(data);
-      return data;
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-};
+//////// POSSIBLE FUNCTIONALITY ADDITIONS /////////////////////
+
+// SEARCH MOVIES SERVER SIDE (NOT IMPLEMENTED)
+//
+// module.exports.searchMovies = (name) => {
+//   return pool
+//     .query(('SELECT * FROM movies WHERE name LIKE ' % ' || $1 || ') % ';', [name])
+//     .then((data) => {
+//       console.log('*** Retrieved All Rows Containing Search Term From The movie Table ***');
+//       return data;
+//     })
+//     .catch((error) => {
+//       console.error('!!! Error Retrieving All Search Term Rows From The movie Table !!!');
+//     });
+// };
+
+//////// FORMER FUNCTIONS /////////////////////////////////////
+
+// RETURN MOVIES BY GENRE (OLD METHOD)
+//
+// module.exports.moviesByGenre = (genre) => {
+//   return pool
+//     .query('SELECT id, name, year, description, "avgRating", "posterPath", genres, "trailerPath", seen FROM movies WHERE genres @> $1 ORDER BY year desc', [
+//       genre,
+//     ])
+//     .then((data) => {
+//       // console.log(data);
+//       return data;
+//     })
+//     .catch((error) => {
+//       console.error(error);
+//     });
+// };
+
+// RETURN MOVIES BY YEAR (OLD METHOD)
+//
+// module.exports.moviesByYear = (year) => {
+//   return pool
+//     .query('SELECT id, name, year, description, "avgRating", "posterPath", genres, "trailerPath", seen FROM movies WHERE year=$1', [year])
+//     .then((data) => {
+//       // console.log(data);
+//       return data;
+//     })
+//     .catch((error) => {
+//       console.error(error);
+//     });
+// };

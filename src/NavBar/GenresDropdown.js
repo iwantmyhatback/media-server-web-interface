@@ -4,7 +4,7 @@ function Genres(props) {
   return (
     <div className="Genres">
       <label>Movie Genre: </label>
-      <select onChange={props.change} value={props.selected}>
+      <select onChange={props.handleGenreChange} value={props.selected}>
         {props.genres.map((genre) => {
           return (
             <option key={Math.random()} value={genre}>
