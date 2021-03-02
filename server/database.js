@@ -20,7 +20,7 @@ const pool = new pg.Pool(config.pgCredentials);
 
 // NEW FILTER FUNCTION //////////////////////////////////////////////
 module.exports.filteredMovies = (filters) => {
-  console.log('database function receives:', filters);
+  // console.log('database function receives:', filters);
   return pool
     .query(
       'SELECT id, name, year, description, "avgRating", "posterPath", genres, "trailerPath", seen FROM movies WHERE genres @> $1 AND year=coalesce(nullif($2, -1), year) ORDER BY year desc',
