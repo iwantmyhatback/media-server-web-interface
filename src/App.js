@@ -45,19 +45,25 @@ function App() {
   function getByYear(event) {
     event.preventDefault();
     setSelectedYear(event.target.value);
-    axios.get('/mov/byYr', { params: { searchYear: event.target.value, searchGenre: translateName(selectedGenre) } }).then((data) => {
+  }
+
+  useEffect(() => {
+    axios.get('/mov/byYr', { params: { searchYear: selectedYear, searchGenre: translateName(selectedGenre) } }).then((data) => {
       setMovies(data.data);
     });
-  }
+  }, [selectedYear]);
 
   // GET BY GENRE
   function getByGenre(event) {
     event.preventDefault();
     setSelectedGenre(event.target.value);
-    axios.get('/mov/byGenre', { params: { searchYear: selectedYear, searchGenre: translateName(event.target.value) } }).then((data) => {
+  }
+
+  useEffect(() => {
+    axios.get('/mov/byGenre', { params: { searchYear: selectedYear, searchGenre: translateName(selectedGenre) } }).then((data) => {
       setMovies(data.data);
     });
-  }
+  }, [selectedGenre]);
 
   // CHOOSE MEDIA TYPE
   function changeMediaType(event) {
