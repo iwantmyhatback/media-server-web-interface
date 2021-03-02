@@ -21,7 +21,6 @@ function App() {
   // EXTERNAL REQUESTS //////////
   // MOVIE LIST REQUEST
   useEffect(() => {
-    console.log('running');
     axios.get('/mov', { params: { searchYear: selectedYear, searchGenre: translateName(selectedGenre) } }).then((data) => {
       setMovies(data.data);
     });
