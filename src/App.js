@@ -18,13 +18,13 @@ function App() {
     setSearchTerm(e.target.value);
   };
 
-  // INITIAL MOVIE LIST REQUEST
+  // MOVIE LIST REQUEST
   useEffect(() => {
-    axios.get('/mov').then((data) => {
+    console.log('running');
+    axios.get('/mov', { params: { searchYear: selectedYear, searchGenre: translateName(selectedGenre) } }).then((data) => {
       setMovies(data.data);
-      return data.data;
     });
-  }, []);
+  }, [selectedYear, selectedGenre]);
 
   // INITIAL TV LIST REQUEST
   useEffect(() => {
@@ -41,29 +41,17 @@ function App() {
     });
   }, []);
 
-  // GET BY YEAR
-  function getByYear(event) {
+  // SET SELECTED YEAR ON CHANGE
+  function handleYearChange(event) {
     event.preventDefault();
     setSelectedYear(event.target.value);
   }
 
-  useEffect(() => {
-    axios.get('/mov/byYr', { params: { searchYear: selectedYear, searchGenre: translateName(selectedGenre) } }).then((data) => {
-      setMovies(data.data);
-    });
-  }, [selectedYear]);
-
-  // GET BY GENRE
-  function getByGenre(event) {
+  // SET SELECTED GENRE ON CHANGE
+  function handleGenreChange(event) {
     event.preventDefault();
     setSelectedGenre(event.target.value);
   }
-
-  useEffect(() => {
-    axios.get('/mov/byGenre', { params: { searchYear: selectedYear, searchGenre: translateName(selectedGenre) } }).then((data) => {
-      setMovies(data.data);
-    });
-  }, [selectedGenre]);
 
   // CHOOSE MEDIA TYPE
   function changeMediaType(event) {
@@ -78,10 +66,10 @@ function App() {
           changeMediaType={changeMediaType}
           type={type}
           years={years}
-          getByYear={getByYear}
+          handleYearChange={handleYearChange}
           selectedYear={selectedYear}
           genres={genreList}
-          getByGenre={getByGenre}
+          handleGenreChange={handleGenreChange}
           selectedGenre={selectedGenre}
           search={search}
           movieLength={movies.length}

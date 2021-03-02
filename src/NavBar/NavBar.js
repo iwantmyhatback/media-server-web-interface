@@ -21,12 +21,12 @@ let NavBar = (props) => {
         <div className="filters">
           <Types change={props.changeMediaType} selected={props.type} />
           {props.type === 'ALL' || props.type === 'Movies' ? (
-            <Years years={props.years} change={props.getByYear} selected={props.selectedYear} />
+            <Years years={props.years} handleYearChange={props.handleYearChange} selected={props.selectedYear} />
           ) : (
             <React.Fragment></React.Fragment>
           )}
           {props.type === 'ALL' || props.type === 'Movies' ? (
-            <Genres genres={props.genres} change={props.getByGenre} selected={props.selectedGenre} />
+            <Genres genres={props.genres} handleGenreChange={props.handleGenreChange} selected={props.selectedGenre} />
           ) : (
             <React.Fragment></React.Fragment>
           )}

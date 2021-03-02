@@ -23,35 +23,10 @@ module.exports.listYears = (req, res) => {
   });
 };
 
-module.exports.listMoviesByYear = (req, res) => {
-  let searchYear = req.query.searchYear;
-  if (searchYear === 'ALL') {
-    return database.getAllMovies().then((movieList) => {
-      res.send(movieList.rows);
-    });
-  } else {
-    return database.moviesByYear(searchYear).then((movieList) => {
-      res.send(movieList.rows);
-    });
-  }
-};
-
-module.exports.listMoviesByGenre = (req, res) => {
-  let searchGenre = req.query.searchGenre;
-  return database.moviesByGenre(searchGenre).then((movieList) => {
-    res.send(movieList.rows);
-  });
-};
-
 module.exports.listTv = (req, res) => {
   return database.getAllShows().then((showList) => {
     res.send(showList.rows);
   });
-};
-
-module.exports.watch = (req, res) => {
-  console.log(req.params.videoName);
-  //Needs Response
 };
 
 module.exports.seen = (req, res) => {
@@ -60,3 +35,35 @@ module.exports.seen = (req, res) => {
     res.sendStatus(200);
   });
 };
+
+//////// FORMER FUNCTIONS /////////////////////////////////////
+
+// RETURN MOVIES BY GENRE (OLD METHOD)
+//
+// module.exports.listMoviesByGenre = (req, res) => {
+//   let searchGenre = req.query.searchGenre;
+//   return database.moviesByGenre(searchGenre).then((movieList) => {
+//     res.send(movieList.rows);
+//   });
+// };
+
+// RETURN MOVIES BY YEAR (OLD METHOD)
+//
+// module.exports.listMoviesByYear = (req, res) => {
+//   let searchYear = req.query.searchYear;
+//   if (searchYear === 'ALL') {
+//     return database.getAllMovies().then((movieList) => {
+//       res.send(movieList.rows);
+//     });
+//   } else {
+//     return database.moviesByYear(searchYear).then((movieList) => {
+//       res.send(movieList.rows);
+//     });
+//   }
+// };
+
+// WATCH STREAM (NOT IMPLEMENTED)
+// module.exports.watch = (req, res) => {
+//   console.log(req.params.videoName);
+//   //Needs Response
+// };

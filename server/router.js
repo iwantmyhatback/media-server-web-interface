@@ -2,9 +2,15 @@ const express = require('express');
 const model = require('./model');
 const router = express.Router();
 
+// FORMER METHOD (IN PROGRESS OF PHASE OUT)
+// router.get('/mov', (req, res) => {
+//   // console.log(req);
+//   model.listMovies(req, res);
+// });
+
 router.get('/mov', (req, res) => {
   // console.log(req);
-  model.listMovies(req, res);
+  model.listMoviesNewFilterFunction(req, res);
 });
 
 router.get('/mov/byYr', (req, res) => {
@@ -27,11 +33,6 @@ router.get('/tv', (req, res) => {
   model.listTv(req, res);
 });
 
-router.get('/searchMovies', (req, res) => {
-  // console.log(req);
-  model.searchMovies(req, res);
-});
-
 router.get('/searchTV', (req, res) => {
   // console.log(req);
   model.searchTv(req, res);
@@ -48,3 +49,12 @@ router.get('/seen/:videoID', (req, res) => {
 });
 
 module.exports = router;
+
+//////// FORMER FUNCTIONS /////////////////////////////////////
+
+// SEARCH MOVIES SERVER SIDE (NOT IMPLEMENTED)
+//
+// router.get('/searchMovies', (req, res) => {
+//   // console.log(req);
+//   model.searchMovies(req, res);
+// });
