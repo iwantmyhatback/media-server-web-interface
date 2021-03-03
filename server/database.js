@@ -22,15 +22,15 @@ module.exports.filteredMovies = (filters) => {
   // console.log('database function receives:', filters);
   return pool
     .query(
-      'SELECT id, name, year, description, "avgRating", "posterPath", genres, "trailerPath", seen FROM movies WHERE genres @> $1 AND year=coalesce(nullif($2, -1), year) ORDER BY year desc',
-      [filters.genre, filters.year]
+      'SELECT id, name, year, description, "avgRating", "posterPath", genres, "trailerPath", seen FROM movies WHERE genres @> $1 AND year=coalesce(nullif($2, -1), year) AND seen=ANY($3) ORDER BY year desc;',
+      [filters.genre, filters.year, filters.seen]
     )
     .then((data) => {
       // console.log(data);
       return data;
     })
     .catch((error) => {
-      // console.error(error);
+      console.error(error);
       console.error('!!! Error Retrieving Filtered Movies From Database !!!');
     });
 };
