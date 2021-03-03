@@ -16,7 +16,7 @@
 .filters {
   display: grid;
   gap: 0vw;
-  grid-template-columns: 20vw 20vw 20vw 20vw ;
+  grid-template-columns: 16vw 16vw 16vw 16vw 16vw;
 }
 
 .Types {
@@ -25,34 +25,43 @@
 }
 
 .Types select{
-  width: 16vw;
+  width: 10vw;
 }
 
 .Years {
   display: inline;
-  padding: 10px;
+  padding: 10px 0px 10px 0px;
 }
 
 .Years select{
-  width: 16vw;
+  width: 10vw;
 }
 
 .Genres {
   display: inline;
-  padding: 10px;
+  padding: 10px 0px 10px 0px;
 }
 
 .Genres select{
-  width: 16vw;
+  width: 10vw;
 }
 
 .Search {
   display: inline;
-  padding: 10px;
+  padding: 10px 0px 10px 0px;
 }
 
 .Search input{
-  width: 20vw;
+  width: 10.5vw;
+}
+
+.Seen {
+  display: inline;
+  padding: 10px 0px 10px 0px;
+}
+
+.Seen select{
+  width: 10vw;
 }
 
 .Stars {
@@ -168,6 +177,7 @@ label {
 .title {
   margin-top: 0px;
   margin-bottom: 2%;
+  width: 100%
 }
 
 .close {

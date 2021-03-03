@@ -4,8 +4,9 @@ module.exports.listMoviesNewFilterFunction = (req, res) => {
   // console.log('model function receives:', req.query);
   let searchYear = req.query.searchYear === 'ALL' ? null : req.query.searchYear;
   let searchGenre = req.query.searchGenre;
+  let searchSeen = req.query.searchSeen;
 
-  return database.filteredMovies({ genre: searchGenre, year: searchYear }).then((movieList) => {
+  return database.filteredMovies({ genre: searchGenre, seen: searchSeen, year: searchYear }).then((movieList) => {
     res.send(movieList.rows);
   });
 };

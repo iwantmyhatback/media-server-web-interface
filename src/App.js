@@ -12,6 +12,7 @@ function App() {
   const [years, setYears] = useState([]);
   const [selectedYear, setSelectedYear] = useState('ALL');
   const [selectedGenre, setSelectedGenre] = useState('ALL');
+  const [selectedSeen, setSelectedSeen] = useState('{true,false}');
   const [type, setMediaType] = useState('Movies');
 
   let search = (e) => {
@@ -21,10 +22,10 @@ function App() {
   // EXTERNAL REQUESTS //////////
   // MOVIE LIST REQUEST
   useEffect(() => {
-    axios.get('/mov', { params: { searchYear: selectedYear, searchGenre: translateName(selectedGenre) } }).then((data) => {
+    axios.get('/mov', { params: { searchSeen: selectedSeen, searchYear: selectedYear, searchGenre: translateName(selectedGenre) } }).then((data) => {
       setMovies(data.data);
     });
-  }, [selectedYear, selectedGenre]);
+  }, [selectedYear, selectedGenre, selectedSeen]);
 
   // TELEVISION LIST REQUEST
   useEffect(() => {
@@ -54,6 +55,12 @@ function App() {
     setSelectedGenre(event.target.value);
   }
 
+  // SET SELECTED SEEN STATUS ON CHANGE
+  function handleSeenChange(event) {
+    event.preventDefault();
+    setSelectedSeen(event.target.value);
+  }
+
   // SET SELECTED MEDIA TYPE ON CHANGE
   function handleMediaTypeChange(event) {
     event.preventDefault();
@@ -64,14 +71,16 @@ function App() {
     <React.Fragment>
       <div className="app-container">
         <NavBar
-          handleMediaTypeChange={handleMediaTypeChange}
           type={type}
+          handleMediaTypeChange={handleMediaTypeChange}
           years={years}
           handleYearChange={handleYearChange}
           selectedYear={selectedYear}
           genres={genreList}
           handleGenreChange={handleGenreChange}
           selectedGenre={selectedGenre}
+          selectedSeen={selectedSeen}
+          handleSeenChange={handleSeenChange}
           search={search}
           movieLength={movies.length}
           showLength={shows.length}

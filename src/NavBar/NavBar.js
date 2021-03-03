@@ -3,6 +3,7 @@ import Years from './YearsDropdown.js';
 import Types from './TypesDropdown.js';
 import Search from './SearchBar.js';
 import Genres from './GenresDropdown.js';
+import Seen from './SeenDropdown';
 import config from '../../config/config.js';
 
 let NavBar = (props) => {
@@ -21,7 +22,10 @@ let NavBar = (props) => {
         <div className="filters">
           <Types handleMediaTypeChange={props.handleMediaTypeChange} selected={props.type} />
           {props.type === 'ALL' || props.type === 'Movies' ? (
-            <Years years={props.years} handleYearChange={props.handleYearChange} selected={props.selectedYear} />
+            <React.Fragment>
+              <Seen handleSeenChange={props.handleSeenChange} selected={props.selectedSeen} />
+              <Years years={props.years} handleYearChange={props.handleYearChange} selected={props.selectedYear} />
+            </React.Fragment>
           ) : (
             <React.Fragment></React.Fragment>
           )}

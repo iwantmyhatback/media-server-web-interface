@@ -3,7 +3,9 @@ import React from 'react';
 function Genres(props) {
   return (
     <div className="Genres">
-      <label>Movie Genre: </label>
+      <label>
+        Genres: <br />
+      </label>
       <select onChange={props.handleGenreChange} value={props.selected}>
         {props.genres.map((genre) => {
           return (
