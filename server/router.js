@@ -3,7 +3,7 @@ const model = require('./model');
 const router = express.Router();
 
 router.get('/mov', (req, res) => {
-  // console.log(req);
+  console.log('Passed to router', req.query);
   model.listMoviesNewFilterFunction(req, res);
 });
 

@@ -19,11 +19,18 @@ const pool = new pg.Pool(config.pgCredentials);
 // MOVIES QUERIES
 
 module.exports.filteredMovies = (filters) => {
-  // console.log('database function receives:', filters);
+  console.log('database function receives:', filters);
+
+  console.log(
+    `SELECT id, name, year, description, "avgRating", "posterPath", genres, "trailerPath", seen FROM movies WHERE genres @> ${filters.searchGenre} AND year=coalesce(nullif(${filters.searchYear}, -1), year)AND seen=ANY(${filters.searchSeen}) ORDER BY ${filters.sortColumn} desc;`
+  );
+
+  let name = JSON.stringify(filters.sortColumn);
+
   return pool
     .query(
-      'SELECT id, name, year, description, "avgRating", "posterPath", genres, "trailerPath", seen FROM movies WHERE genres @> $1 AND year=coalesce(nullif($2, -1), year) AND seen=ANY($3) ORDER BY year desc;',
-      [filters.genre, filters.year, filters.seen]
+      `SELECT id, name, year, description, "avgRating", "posterPath", genres, "trailerPath", seen FROM movies WHERE genres @> $1 AND year=coalesce(nullif($2, -1), year) AND seen=ANY($3) ORDER BY $4 DESC;`,
+      [filters.searchGenre, filters.searchYear, filters.searchSeen, name]
     )
     .then((data) => {
       // console.log(data);
