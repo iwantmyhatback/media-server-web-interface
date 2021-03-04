@@ -25,12 +25,11 @@ module.exports.filteredMovies = (filters) => {
     `SELECT id, name, year, description, "avgRating", "posterPath", genres, "trailerPath", seen FROM movies WHERE genres @> ${filters.searchGenre} AND year=coalesce(nullif(${filters.searchYear}, -1), year)AND seen=ANY(${filters.searchSeen}) ORDER BY ${filters.sortColumn} desc;`
   );
 
-  let name = JSON.stringify(filters.sortColumn);
-
   return pool
     .query(
-      `SELECT id, name, year, description, "avgRating", "posterPath", genres, "trailerPath", seen FROM movies WHERE genres @> $1 AND year=coalesce(nullif($2, -1), year) AND seen=ANY($3) ORDER BY $4 DESC;`,
-      [filters.searchGenre, filters.searchYear, filters.searchSeen, name]
+      `SELECT id, name, year, description, "avgRating", "posterPath", genres, "trailerPath", seen FROM movies WHERE genres @> $1 AND year=coalesce(nullif($2, -1), year) AND seen=ANY($3) ORDER BY ${filters.sortColumn} ${filters.sortDirection};`,
+      // PASSING filters.sortColumn IN THE FOLLOWING ARRAY AS A VARIABLE IS CAUSING SOME SORT OF FUNCTIONALITY PROBLEM IN THE PG-NPM MODULE. CAUSING SORT ISSUES NOT PRESENT OTHERWISE
+      [filters.searchGenre, filters.searchYear, filters.searchSeen]
     )
     .then((data) => {
       // console.log(data);

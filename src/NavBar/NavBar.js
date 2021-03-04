@@ -31,8 +31,8 @@ let NavBar = (props) => {
             <React.Fragment></React.Fragment>
           )}
           <Genres genres={props.genres} handleGenreChange={props.handleGenreChange} selected={props.selectedGenre} />
-          <Search search={props.search} />
           <Sort handleSortChange={props.handleSortChange} selected={props.selectedSort} />
+          <Search search={props.search} />
         </div>
       </div>
     </React.Fragment>

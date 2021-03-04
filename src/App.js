@@ -13,7 +13,7 @@ function App() {
   const [selectedYear, setSelectedYear] = useState('ALL');
   const [selectedGenre, setSelectedGenre] = useState('ALL');
   const [selectedSeen, setSelectedSeen] = useState('{true,false}');
-  const [selectedSort, setSelectedSort] = useState({ col: 'name', dir: 'DESC' });
+  const [selectedSort, setSelectedSort] = useState({ col: 'year', dir: 'DESC' });
   const [type, setMediaType] = useState('Movies');
 
   let search = (e) => {

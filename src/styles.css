@@ -16,7 +16,7 @@
 .filters {
   display: grid;
   gap: 0vw;
-  grid-template-columns: 16vw 16vw 16vw 16vw 16vw;
+  grid-template-columns: 16vw 16vw 16vw 16vw 16vw 16vw;
 }
 
 .Types {
@@ -61,6 +61,15 @@
 }
 
 .Seen select{
+  width: 10vw;
+}
+
+.Sort {
+  display: inline;
+  padding: 10px 0px 10px 0px;
+}
+
+.Sort select{
   width: 10vw;
 }
 
