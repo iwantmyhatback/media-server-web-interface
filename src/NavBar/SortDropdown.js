@@ -1,7 +1,6 @@
 import React from 'react';
 
 function Sort(props) {
-  console.log('Passed to sort component', props);
   return (
     <div className="Sort">
       <label>

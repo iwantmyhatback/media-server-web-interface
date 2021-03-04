@@ -34,7 +34,6 @@ function App() {
         },
       })
       .then((data) => {
-        console.log(data);
         setMovies(data.data);
       });
   }, [selectedYear, selectedGenre, selectedSeen, selectedSort]);
@@ -76,7 +75,6 @@ function App() {
   // SET SELECTED SORT ON CHANGE
   function handleSortChange(event) {
     event.preventDefault();
-    console.log('Passed to handleSortChange', event.target.value);
     let sortArr = event.target.value.split('.');
     setSelectedSort({ col: sortArr[0], dir: sortArr[1] });
   }

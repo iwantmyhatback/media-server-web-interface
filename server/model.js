@@ -1,7 +1,6 @@
 const database = require('./database.js');
 
 module.exports.listMoviesNewFilterFunction = (req, res) => {
-  console.log('model function receives:', req.query);
   let searchYear = req.query.searchYear === 'ALL' ? null : req.query.searchYear;
   let searchGenre = req.query.searchGenre;
   let searchSeen = req.query.searchSeen;
@@ -29,7 +28,6 @@ module.exports.listYears = (req, res) => {
 };
 
 module.exports.listTv = (req, res) => {
-  // console.log('model function receives:', req.query);
   let searchGenre = req.query.searchGenre;
   return database.filteredShows({ searchGenre }).then((showList) => {
     res.send(showList.rows);
@@ -37,7 +35,6 @@ module.exports.listTv = (req, res) => {
 };
 
 module.exports.seen = (req, res) => {
-  // console.log(req.params.videoID);
   return database.setSeen(req.params.videoID).then(() => {
     res.sendStatus(200);
   });

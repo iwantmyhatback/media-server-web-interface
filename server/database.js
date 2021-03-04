@@ -19,24 +19,19 @@ const pool = new pg.Pool(config.pgCredentials);
 // MOVIES QUERIES
 
 module.exports.filteredMovies = (filters) => {
-  console.log('database function receives:', filters);
-
-  console.log(
-    `SELECT id, name, year, description, "avgRating", "posterPath", genres, "trailerPath", seen FROM movies WHERE genres @> ${filters.searchGenre} AND year=coalesce(nullif(${filters.searchYear}, -1), year)AND seen=ANY(${filters.searchSeen}) ORDER BY ${filters.sortColumn} desc;`
-  );
-
   return pool
     .query(
       `SELECT id, name, year, description, "avgRating", "posterPath", genres, "trailerPath", seen FROM movies WHERE genres @> $1 AND year=coalesce(nullif($2, -1), year) AND seen=ANY($3) ORDER BY ${filters.sortColumn} ${filters.sortDirection};`,
-      // PASSING filters.sortColumn IN THE FOLLOWING ARRAY AS A VARIABLE IS CAUSING SOME SORT OF FUNCTIONALITY PROBLEM IN THE PG-NPM MODULE. CAUSING SORT ISSUES NOT PRESENT OTHERWISE
+      /* PASSING filters.sortColumn IN THE FOLLOWING ARRAY (AS A VARIABLE) IS CAUSING SOME SORT OF FUNCTIONALITY PROBLEM IN THE PG-NPM MODULE. RETURNS RESULTS IN A SEMI ALPHABETICAL FORMAT RATHER THAN THE ORDER DESCRIBED BY VARIABLES. NOTE THIS ERROR WAS TESTED WITHOUT PASSING THE SORT DIRECTION AS A VARIABLE (WHICH IT RIGHTFULLY SHOULD NOT BE ABLE). THE QUERY WORKS IN PGADMIN AS WELL AS IF IT IS ENTERED INTO THE QUEY STRING AS LITERALS BUT NOT WHEN PASSED INTO THE ARRAY */
       [filters.searchGenre, filters.searchYear, filters.searchSeen]
     )
     .then((data) => {
-      // console.log(data);
+      // console.log('*** Retrieved Filtere List Of Movies From movie Table ***');
+      // console.log("Filters:", filters)
       return data;
     })
     .catch((error) => {
-      console.error(error);
+      // console.error(error);
       console.error('!!! Error Retrieving Filtered Movies From Database !!!');
     });
 };

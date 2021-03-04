@@ -8,7 +8,6 @@ import Sort from './SortDropdown';
 import config from '../../config/config.js';
 
 let NavBar = (props) => {
-  console.log('Passed to navbar component', props.selectedSort);
   return (
     <React.Fragment>
       <div className="NavBar">
