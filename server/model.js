@@ -1,14 +1,17 @@
 const database = require('./database.js');
 
 module.exports.listMoviesNewFilterFunction = (req, res) => {
-  // console.log('model function receives:', req.query);
   let searchYear = req.query.searchYear === 'ALL' ? null : req.query.searchYear;
   let searchGenre = req.query.searchGenre;
   let searchSeen = req.query.searchSeen;
+  let sortColumn = req.query.sortColumn;
+  let sortDirection = req.query.sortDirection;
 
-  return database.filteredMovies({ genre: searchGenre, seen: searchSeen, year: searchYear }).then((movieList) => {
-    res.send(movieList.rows);
-  });
+  return database
+    .filteredMovies({ searchGenre: searchGenre, searchSeen: searchSeen, searchYear: searchYear, sortColumn: sortColumn, sortDirection: sortDirection })
+    .then((movieList) => {
+      res.send(movieList.rows);
+    });
 };
 
 module.exports.listMovies = (req, res) => {
@@ -25,7 +28,6 @@ module.exports.listYears = (req, res) => {
 };
 
 module.exports.listTv = (req, res) => {
-  // console.log('model function receives:', req.query);
   let searchGenre = req.query.searchGenre;
   return database.filteredShows({ searchGenre }).then((showList) => {
     res.send(showList.rows);
@@ -33,7 +35,6 @@ module.exports.listTv = (req, res) => {
 };
 
 module.exports.seen = (req, res) => {
-  // console.log(req.params.videoID);
   return database.setSeen(req.params.videoID).then(() => {
     res.sendStatus(200);
   });

@@ -13,6 +13,7 @@ function App() {
   const [selectedYear, setSelectedYear] = useState('ALL');
   const [selectedGenre, setSelectedGenre] = useState('ALL');
   const [selectedSeen, setSelectedSeen] = useState('{true,false}');
+  const [selectedSort, setSelectedSort] = useState({ col: 'year', dir: 'DESC' });
   const [type, setMediaType] = useState('Movies');
 
   let search = (e) => {
@@ -22,10 +23,20 @@ function App() {
   // EXTERNAL REQUESTS //////////
   // MOVIE LIST REQUEST
   useEffect(() => {
-    axios.get('/mov', { params: { searchSeen: selectedSeen, searchYear: selectedYear, searchGenre: translateName(selectedGenre) } }).then((data) => {
-      setMovies(data.data);
-    });
-  }, [selectedYear, selectedGenre, selectedSeen]);
+    axios
+      .get('/mov', {
+        params: {
+          searchSeen: selectedSeen,
+          searchYear: selectedYear,
+          searchGenre: translateName(selectedGenre),
+          sortColumn: selectedSort.col,
+          sortDirection: selectedSort.dir,
+        },
+      })
+      .then((data) => {
+        setMovies(data.data);
+      });
+  }, [selectedYear, selectedGenre, selectedSeen, selectedSort]);
 
   // TELEVISION LIST REQUEST
   useEffect(() => {
@@ -61,6 +72,13 @@ function App() {
     setSelectedSeen(event.target.value);
   }
 
+  // SET SELECTED SORT ON CHANGE
+  function handleSortChange(event) {
+    event.preventDefault();
+    let sortArr = event.target.value.split('.');
+    setSelectedSort({ col: sortArr[0], dir: sortArr[1] });
+  }
+
   // SET SELECTED MEDIA TYPE ON CHANGE
   function handleMediaTypeChange(event) {
     event.preventDefault();
@@ -81,6 +99,8 @@ function App() {
           selectedGenre={selectedGenre}
           selectedSeen={selectedSeen}
           handleSeenChange={handleSeenChange}
+          selectedSort={`${selectedSort.col}.${selectedSort.dir}`}
+          handleSortChange={handleSortChange}
           search={search}
           movieLength={movies.length}
           showLength={shows.length}

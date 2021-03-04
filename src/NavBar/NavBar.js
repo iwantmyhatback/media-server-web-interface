@@ -4,6 +4,7 @@ import Types from './TypesDropdown.js';
 import Search from './SearchBar.js';
 import Genres from './GenresDropdown.js';
 import Seen from './SeenDropdown';
+import Sort from './SortDropdown';
 import config from '../../config/config.js';
 
 let NavBar = (props) => {
@@ -17,7 +18,6 @@ let NavBar = (props) => {
           Movie Count: {props.movieLength} Show Count: {props.showLength}
           <br />
         </label>
-        <br />
 
         <div className="filters">
           <Types handleMediaTypeChange={props.handleMediaTypeChange} selected={props.type} />
@@ -30,6 +30,7 @@ let NavBar = (props) => {
             <React.Fragment></React.Fragment>
           )}
           <Genres genres={props.genres} handleGenreChange={props.handleGenreChange} selected={props.selectedGenre} />
+          <Sort handleSortChange={props.handleSortChange} selected={props.selectedSort} />
           <Search search={props.search} />
         </div>
       </div>
