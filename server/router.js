@@ -17,6 +17,14 @@ router.get('/tv', (req, res) => {
   model.listTv(req, res);
 });
 
+router.get('/edit', (req, res) => {
+  model.getEditTitleInfo(req, res);
+});
+
+router.put('/edit', (req, res) => {
+  model.updateEditTitle(req, res);
+});
+
 router.get('/seen/:videoID', (req, res) => {
   // console.log(req);
   model.seen(req, res);
@@ -38,34 +46,4 @@ module.exports = router;
 // router.get('/searchTV', (req, res) => {
 //   // console.log(req);
 //   model.searchTv(req, res);
-// });
-
-//////// FORMER FUNCTIONS /////////////////////////////////////
-
-// SEARCH MOVIES SERVER SIDE (NOT IMPLEMENTED)
-//
-// router.get('/searchMovies', (req, res) => {
-//   // console.log(req);
-//   model.searchMovies(req, res);
-// });
-//
-//
-// GET MOVIES BY YEAR (OLD FUNCTION)
-//
-// router.get('/mov/byYr', (req, res) => {
-//   // console.log(req);
-//   model.listMoviesNewFilterFunction(req, res);
-// });
-//
-// GET MOVIES BY GENRE (OLD FUNCTION)
-//
-// router.get('/mov/byGenre', (req, res) => {
-//   // console.log(req);
-//   model.listMoviesNewFilterFunction(req, res);
-// });
-
-// GET ALL MOVIES (OLD FUNCTION)
-// router.get('/mov', (req, res) => {
-//   // console.log(req);
-//   model.listMovies(req, res);
 // });

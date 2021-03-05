@@ -25,12 +25,12 @@ let NavBar = (props) => {
             <React.Fragment>
               <Seen handleSeenChange={props.handleSeenChange} selected={props.selectedSeen} />
               <Years years={props.years} handleYearChange={props.handleYearChange} selected={props.selectedYear} />
+              <Sort handleSortChange={props.handleSortChange} selected={props.selectedSort} />
             </React.Fragment>
           ) : (
             <React.Fragment></React.Fragment>
           )}
           <Genres genres={props.genres} handleGenreChange={props.handleGenreChange} selected={props.selectedGenre} />
-          <Sort handleSortChange={props.handleSortChange} selected={props.selectedSort} />
           <Search search={props.search} />
         </div>
       </div>
