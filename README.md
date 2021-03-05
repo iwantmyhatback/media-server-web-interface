@@ -23,9 +23,12 @@ The display scales dependent on the viewport dimentions of the device that visit
 ![Scaling-Example](/img/scaling-example.png)
 
 ## Filtering
-Includes stackable filtering of all titles by Media Type, Search strings, and Genres and movies are additionally filterable by Movie Year and the Movie "Seen" status the owner has set for each title.
+Includes stackable filtering of all titles by Media Type, Search strings, and Genres and movies are additionally filterable by Movie Year and the Movie "Seen" status the owner has set for each title. The Sort order of movies is also selectable allowing the ability to soryt by Title, Year, or Rating
 
 ![filtering-example](/img/filtering-example.gif)
+
+## Description Correction
+Sometimes the application's first guess as to a movie description can be incorrect, this happens for films with vuage or common names, inaccurate year listings, films with sequels, or films that have the same title as another film. So there is a button in the expanded film description called "Incorrect title information!" which allows the user to examine all results for the title they have selected and browse for the correct description to overwrite the current (incorrect) one.
 
 ## Other Features
 - The ability to mark movies as watched so that the user or their guests can keep track of what films have already been viewed by the owner.
