@@ -27,8 +27,7 @@ Includes stackable filtering of all titles by Media Type, Search strings, and Ge
 
 ![filtering-example](/img/filtering-example.gif)
 
-Other features include:
-
+## Other Features
 - The ability to mark movies as watched so that the user or their guests can keep track of what films have already been viewed by the owner.
 - Total Movie and Show Counts
 - Customizable user name and service name (see the config file)
