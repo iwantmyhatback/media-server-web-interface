@@ -17,6 +17,14 @@ router.get('/tv', (req, res) => {
   model.listTv(req, res);
 });
 
+router.get('/edit', (req, res) => {
+  model.getEditTitleInfo(req, res);
+});
+
+router.put('/edit', (req, res) => {
+  model.updateEditTitle(req, res);
+});
+
 router.get('/seen/:videoID', (req, res) => {
   // console.log(req);
   model.seen(req, res);

@@ -3,6 +3,7 @@ import axios from 'axios';
 import Movies from './Movies.js';
 import Shows from './Shows.js';
 import NavBar from './NavBar/NavBar.js';
+import Editor from './Editor/Editor.js';
 import { genreList, translateName } from './TranslationFunctions/translateGenre';
 
 function App() {
@@ -15,6 +16,8 @@ function App() {
   const [selectedSeen, setSelectedSeen] = useState('{true,false}');
   const [selectedSort, setSelectedSort] = useState({ col: 'year', dir: 'DESC' });
   const [type, setMediaType] = useState('Movies');
+  const [showHide, setShowHide] = useState(true);
+  const [editingTitle, setEditingTitle] = useState({});
 
   let search = (e) => {
     setSearchTerm(e.target.value);
@@ -36,7 +39,7 @@ function App() {
       .then((data) => {
         setMovies(data.data);
       });
-  }, [selectedYear, selectedGenre, selectedSeen, selectedSort]);
+  }, [selectedYear, selectedGenre, selectedSeen, selectedSort, showHide]);
 
   // TELEVISION LIST REQUEST
   useEffect(() => {
@@ -85,6 +88,18 @@ function App() {
     setMediaType(event.target.value);
   }
 
+  // SET MAIN CONTENT TO SHOWN OR HIDDEN ON CHANGE
+  function handleShowHideChange(event) {
+    event.preventDefault();
+    // console.log(event.target.value);
+
+    axios.get('/edit', { params: JSON.parse(event.target.value) }).then((data) => {
+      // console.log(data);
+      setEditingTitle(data.data);
+      setShowHide(false);
+    });
+  }
+
   return (
     <React.Fragment>
       <div className="app-container">
@@ -106,8 +121,16 @@ function App() {
           showLength={shows.length}
         />
 
-        {type === 'ALL' || type === 'Movies' ? <Movies data={movies} term={searchTerm} /> : <React.Fragment></React.Fragment>}
-        {type === 'ALL' || type === 'TV' ? <Shows data={shows} term={searchTerm} /> : <React.Fragment></React.Fragment>}
+        <React.Fragment>
+          {showHide ? (
+            <div className="showHide">
+              {type === 'ALL' || type === 'Movies' ? <Movies data={movies} term={searchTerm} showHide={handleShowHideChange} /> : <React.Fragment />}
+              {type === 'ALL' || type === 'TV' ? <Shows data={shows} term={searchTerm} /> : <React.Fragment />}
+            </div>
+          ) : (
+            <Editor data={editingTitle} term={searchTerm} done={setShowHide} />
+          )}
+        </React.Fragment>
       </div>
     </React.Fragment>
   );

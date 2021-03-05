@@ -60,6 +60,26 @@ module.exports.setSeen = (id) => {
     });
 };
 
+module.exports.updateTitleInfo = (newTitleInfo) => {
+  console.log(newTitleInfo);
+  return pool
+    .query('UPDATE movies SET description=$1, "avgRating"=$2, genres=$3, "posterPath"=$4 WHERE name=$5 AND year=$6', [
+      newTitleInfo.description,
+      newTitleInfo.avgRating,
+      JSON.stringify(newTitleInfo.genres),
+      newTitleInfo.posterPath,
+      newTitleInfo.name,
+      newTitleInfo.year,
+    ])
+    .then((data) => {
+      console.log(data);
+      return data;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
+
 // MOVIE ETL FUNCTIONALITY
 
 module.exports.getAllMovies = () => {
