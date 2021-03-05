@@ -22,7 +22,7 @@ module.exports.filteredMovies = (filters) => {
   return pool
     .query(
       `SELECT id, name, year, description, "avgRating", "posterPath", genres, "trailerPath", seen FROM movies WHERE genres @> $1 AND year=coalesce(nullif($2, -1), year) AND seen=ANY($3) ORDER BY ${filters.sortColumn} ${filters.sortDirection};`,
-      /* PASSING filters.sortColumn IN THE FOLLOWING ARRAY (AS A VARIABLE) IS CAUSING SOME SORT OF FUNCTIONALITY PROBLEM IN THE PG-NPM MODULE. RETURNS RESULTS IN A SEMI ALPHABETICAL FORMAT RATHER THAN THE ORDER DESCRIBED BY VARIABLES. NOTE THIS ERROR WAS TESTED WITHOUT PASSING THE SORT DIRECTION AS A VARIABLE (WHICH IT RIGHTFULLY SHOULD NOT BE ABLE). THE QUERY WORKS IN PGADMIN AS WELL AS IF IT IS ENTERED INTO THE QUEY STRING AS LITERALS BUT NOT WHEN PASSED INTO THE ARRAY */
+      /* PASSING filters.sortColumn IN THE FOLLOWING ARRAY (AS A VARIABLE) IS CAUSING SOME SORT OF FUNCTIONALITY PROBLEM IN THE PG-NPM MODULE. RETURNS RESULTS IN A SEMI ALPHABETICAL FORMAT RATHER THAN THE ORDER DESCRIBED BY VARIABLES. NOTE THIS ERROR WAS TESTED WITHOUT PASSING THE SORT DIRECTION AS A VARIABLE (WHICH IT RIGHTFULLY SHOULD NOT BE ABLE). THE QUERY WORKS IN PGADMIN AS WELL AS IF IT IS ENTERED INTO THE QUERY STRING AS LITERALS BUT NOT WHEN PASSED INTO THE ARRAY */
       [filters.searchGenre, filters.searchYear, filters.searchSeen]
     )
     .then((data) => {
@@ -228,37 +228,5 @@ module.exports.truncateShows = () => {
 //     })
 //     .catch((error) => {
 //       console.error('!!! Error Retrieving All Search Term Rows From The movie Table !!!');
-//     });
-// };
-
-//////// FORMER FUNCTIONS /////////////////////////////////////
-
-// RETURN MOVIES BY GENRE (OLD METHOD)
-//
-// module.exports.moviesByGenre = (genre) => {
-//   return pool
-//     .query('SELECT id, name, year, description, "avgRating", "posterPath", genres, "trailerPath", seen FROM movies WHERE genres @> $1 ORDER BY year desc', [
-//       genre,
-//     ])
-//     .then((data) => {
-//       // console.log(data);
-//       return data;
-//     })
-//     .catch((error) => {
-//       console.error(error);
-//     });
-// };
-
-// RETURN MOVIES BY YEAR (OLD METHOD)
-//
-// module.exports.moviesByYear = (year) => {
-//   return pool
-//     .query('SELECT id, name, year, description, "avgRating", "posterPath", genres, "trailerPath", seen FROM movies WHERE year=$1', [year])
-//     .then((data) => {
-//       // console.log(data);
-//       return data;
-//     })
-//     .catch((error) => {
-//       console.error(error);
 //     });
 // };

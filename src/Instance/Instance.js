@@ -18,6 +18,14 @@ function Instance(props) {
       return clicked ? (
         <React.Fragment>
           <div className="flex-item" style={{ fontSize: styling.largeViewPortToTextSize(document.documentElement.clientWidth) }}>
+            <CloseButton
+              clicked={() => {
+                setClicked(!clicked);
+              }}
+            />
+            <button className="editor-button" onClick={props.showHide} value={JSON.stringify({ name: props.movie.name, year: props.movie.year })}>
+              Incorrect title information!
+            </button>
             <Poster posterPath={props.movie.posterPath} />
             <MovieInformation
               name={props.movie.name}
@@ -29,14 +37,6 @@ function Instance(props) {
               seen={props.movie.seen}
               id={props.movie.id}
             />
-            <CloseButton
-              clicked={() => {
-                setClicked(!clicked);
-              }}
-            />
-            <button className="editor-button" onClick={props.showHide} value={JSON.stringify({ name: props.movie.name, year: props.movie.year })}>
-              Incorrect title information!
-            </button>
           </div>
         </React.Fragment>
       ) : (

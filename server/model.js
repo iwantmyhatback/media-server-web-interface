@@ -88,37 +88,3 @@ module.exports.updateEditTitle = (req, res) => {
 //   console.log(req.params.videoName);
 //   //Needs Response
 // };
-
-//////// FORMER FUNCTIONS /////////////////////////////////////
-
-// RETURN MOVIES BY GENRE (OLD METHOD)
-//
-// module.exports.listMoviesByGenre = (req, res) => {
-//   let searchGenre = req.query.searchGenre;
-//   return database.moviesByGenre(searchGenre).then((movieList) => {
-//     res.send(movieList.rows);
-//   });
-// };
-
-// RETURN MOVIES BY YEAR (OLD METHOD)
-//
-// module.exports.listMoviesByYear = (req, res) => {
-//   let searchYear = req.query.searchYear;
-//   if (searchYear === 'ALL') {
-//     return database.getAllMovies().then((movieList) => {
-//       res.send(movieList.rows);
-//     });
-//   } else {
-//     return database.moviesByYear(searchYear).then((movieList) => {
-//       res.send(movieList.rows);
-//     });
-//   }
-// };
-
-// RETURN ALL SHOWS (OLD FUNCTION)
-//
-// module.exports.listTv = (req, res) => {
-//   return database.getAllShows().then((showList) => {
-//     res.send(showList.rows);
-//   });
-// };
