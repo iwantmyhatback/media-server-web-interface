@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import 'bulma/css/bulma.css';
 import axios from 'axios';
 import Movies from './Movies.js';
 import Shows from './Shows.js';

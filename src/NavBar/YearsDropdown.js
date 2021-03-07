@@ -1,12 +1,11 @@
 import React from 'react';
+import 'bulma/css/bulma.css';
 
 function Years(props) {
   return (
-    <div className="Years">
-      <label>
-        Movie Year: <br />
-      </label>
-      <select onChange={props.handleYearChange} value={props.selected}>
+    <div className="Years select is-small">
+      <select onChange={props.handleYearChange} defaultValue="Movie Year">
+        <option hidden>Movie Year</option>
         {props.years.map((year) => {
           return (
             <option key={Math.random()} value={year.year}>

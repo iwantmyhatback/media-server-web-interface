@@ -1,18 +1,29 @@
 import React from 'react';
+import 'bulma/css/bulma.css';
 
 function Sort(props) {
   return (
-    <div className="Sort">
-      <label>
-        Sort: <br />
-      </label>
-      <select onChange={props.handleSortChange} value={props.selected}>
-        <option value={'"year".DESC'}>Year Descending</option>
-        <option value={'"year".ASC'}>Year Ascending</option>
-        <option value={'"avgRating".DESC'}>Rating Descending</option>
-        <option value={'"avgRating".ASC'}>Rating Ascending</option>
-        <option value={'"name".DESC'}>Title Descending</option>
-        <option value={'"name".ASC'}>Title Ascending</option>
+    <div className="Sort select is-small">
+      <select onChange={props.handleSortChange} defaultValue="Sort">
+        <option hidden>Sort</option>
+        <option key={Math.random()} value={'"year".DESC'}>
+          Year Descending
+        </option>
+        <option key={Math.random()} value={'"year".ASC'}>
+          Year Ascending
+        </option>
+        <option key={Math.random()} value={'"avgRating".DESC'}>
+          Rating Descending
+        </option>
+        <option key={Math.random()} value={'"avgRating".ASC'}>
+          Rating Ascending
+        </option>
+        <option key={Math.random()} value={'"name".DESC'}>
+          Title Descending
+        </option>
+        <option key={Math.random()} value={'"name".ASC'}>
+          Title Ascending
+        </option>
       </select>
     </div>
   );

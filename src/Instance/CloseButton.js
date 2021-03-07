@@ -1,8 +1,9 @@
 import React from 'react';
+import 'bulma/css/bulma.css';
 
 function CloseButton(props) {
   return (
-    <button className="close" onClick={props.clicked}>
+    <button className="button close" onClick={props.clicked}>
       𐄂
     </button>
   );

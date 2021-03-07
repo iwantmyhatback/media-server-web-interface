@@ -6,7 +6,7 @@ function Shows(props) {
   return (
     <React.Fragment>
       <h2 className="section-head">Shows</h2>
-      <div className="flex-container">
+      <div className="flex-container columns is-multiline">
         {props.data.map((show) => {
           return <Instance show={show} term={props.term} key={key++} />;
         })}

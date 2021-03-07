@@ -7,10 +7,11 @@ import Rating from './InstanceInformation/Rating.js';
 import Description from './InstanceInformation/Description.js';
 import Title from './InstanceInformation/Title.js';
 import Seen from './InstanceInformation/Seen.js';
+import 'bulma/css/bulma.css';
 
 function MovieInformation(props) {
   return (
-    <div className="information-container">
+    <div className="information-container column">
       <Title name={props.name} />
       <Description description={props.description} />
       <br />

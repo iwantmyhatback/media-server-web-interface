@@ -1,12 +1,11 @@
 import React from 'react';
+import 'bulma/css/bulma.css';
 
 function Seen(props) {
   return (
-    <div className="Seen">
-      <label>
-        Movie Seen: <br />
-      </label>
-      <select onChange={props.handleSeenChange} value={props.selected}>
+    <div className="Seen select is-small">
+      <select onChange={props.handleSeenChange} defaultValue="Movie Seen">
+        <option hidden>Movie Seen</option>
         <option value={'{true,false}'}>ALL</option>
         <option value={'{true}'}>Yes</option>
         <option value={'{false}'}>No</option>

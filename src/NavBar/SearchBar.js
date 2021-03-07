@@ -1,14 +1,8 @@
 import React from 'react';
+import 'bulma/css/bulma.css';
 
 function Search(props) {
-  return (
-    <div className="Search ">
-      <label>
-        Search Titles: <br />
-      </label>
-      <input type="text" name="search" onChange={props.search} placeholder="Search Phrase" />
-    </div>
-  );
+  return <input className="Search input is-small" type="text" name="search" onChange={props.search} placeholder="Search Phrase" />;
 }
 
 export default Search;

@@ -6,20 +6,17 @@ import Genres from './GenresDropdown.js';
 import Seen from './SeenDropdown';
 import Sort from './SortDropdown';
 import config from '../../config/config.js';
+import 'bulma/css/bulma.css';
 
 let NavBar = (props) => {
   return (
     <React.Fragment>
-      <div className="NavBar">
-        <a href="/" className="welcome">
-          <h1>{`Welcome To ${config.owner}'s ${config.service}`}</h1>
+      <div className="nav-bar navbar is-spaced">
+        <a href="/" className="welcome navbar-brand">
+          <h1>{`${config.owner}'s ${config.service}`}</h1>
         </a>
-        <label>
-          Movie Count: {props.movieLength} Show Count: {props.showLength}
-          <br />
-        </label>
 
-        <div className="filters">
+        <div className="filters navbar-start">
           <Types handleMediaTypeChange={props.handleMediaTypeChange} selected={props.type} />
           {props.type === 'ALL' || props.type === 'Movies' ? (
             <React.Fragment>
@@ -32,6 +29,10 @@ let NavBar = (props) => {
           )}
           <Genres genres={props.genres} handleGenreChange={props.handleGenreChange} selected={props.selectedGenre} />
           <Search search={props.search} />
+        </div>
+
+        <div className="media-count navbar-end">
+          Movie Count: {props.movieLength} Show Count: {props.showLength}
         </div>
       </div>
     </React.Fragment>

@@ -1,16 +1,15 @@
 import React from 'react';
 // import Watch from './Watch.js';
-import Trailer from './InstanceInformation/Trailer.js';
 import Genres from './InstanceInformation/Genres.js';
-import Year from './InstanceInformation/Year.js';
 import Rating from './InstanceInformation/Rating.js';
 import Description from './InstanceInformation/Description.js';
 import Title from './InstanceInformation/Title.js';
 import Seasons from './InstanceInformation/Seasons.js';
+import 'bulma/css/bulma.css';
 
 function ShowInformation(props) {
   return (
-    <div className="information-container">
+    <div className="information-container column">
       <Title name={props.name} />
       <Description description={props.description} />
       <br />
