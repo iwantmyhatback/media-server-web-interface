@@ -45,7 +45,6 @@ module.exports.seen = (req, res) => {
 module.exports.getEditTitleInfo = (req, res) => {
   titleEditName = req.query.name;
   titleEditYear = req.query.year;
-  console.log(titleEditName, titleEditYear);
   return axios
     .get(`https://api.themoviedb.org/3/search/movie?api_key=${config.api.tmdb}&query=${titleEditName}`)
     .then((data) => {

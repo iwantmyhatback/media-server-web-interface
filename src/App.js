@@ -17,6 +17,7 @@ function App() {
   const [selectedSort, setSelectedSort] = useState({ col: 'year', dir: 'DESC' });
   const [type, setMediaType] = useState('Movies');
   const [showHide, setShowHide] = useState(true);
+  const [editingPossibilities, setEditPossibilities] = useState({});
   const [editingTitle, setEditingTitle] = useState({});
 
   let search = (e) => {
@@ -91,11 +92,10 @@ function App() {
   // SET MAIN CONTENT TO SHOWN OR HIDDEN ON CHANGE
   function handleShowHideChange(event) {
     event.preventDefault();
-    // console.log(event.target.value);
+    setEditingTitle(JSON.parse(event.target.value));
 
     axios.get('/edit', { params: JSON.parse(event.target.value) }).then((data) => {
-      // console.log(data);
-      setEditingTitle(data.data);
+      setEditPossibilities(data.data);
       setShowHide(false);
     });
   }
@@ -128,7 +128,7 @@ function App() {
               {type === 'ALL' || type === 'TV' ? <Shows data={shows} term={searchTerm} /> : <React.Fragment />}
             </div>
           ) : (
-            <Editor data={editingTitle} term={searchTerm} done={setShowHide} />
+            <Editor data={editingPossibilities} original={editingTitle} term={searchTerm} done={setShowHide} />
           )}
         </React.Fragment>
       </div>

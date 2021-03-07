@@ -7,7 +7,7 @@ function Editor(props) {
       <h2 className="section-head">Select The Correct Title Infromation From Below And Click The Corrosponding Check Mark To Overwrite The Movie Data</h2>
       <div className="flex-container">
         {props.data.map((movie) => {
-          return <EditorInstance id={movie.id} movie={movie} key={movie.id} done={props.done} />;
+          return <EditorInstance id={movie.id} movie={movie} key={movie.id} original={props.original} done={props.done} />;
         })}
       </div>
     </React.Fragment>

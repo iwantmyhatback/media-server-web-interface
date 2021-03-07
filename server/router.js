@@ -3,17 +3,14 @@ const model = require('./model');
 const router = express.Router();
 
 router.get('/mov', (req, res) => {
-  // console.log(req);
   model.listMoviesNewFilterFunction(req, res);
 });
 
 router.get('/mov/yrs', (req, res) => {
-  // console.log(req);
   model.listYears(req, res);
 });
 
 router.get('/tv', (req, res) => {
-  // console.log(req);
   model.listTv(req, res);
 });
 
@@ -26,7 +23,6 @@ router.put('/edit', (req, res) => {
 });
 
 router.get('/seen/:videoID', (req, res) => {
-  // console.log(req);
   model.seen(req, res);
 });
 

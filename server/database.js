@@ -27,11 +27,9 @@ module.exports.filteredMovies = (filters) => {
     )
     .then((data) => {
       // console.log('*** Retrieved Filtere List Of Movies From movie Table ***');
-      // console.log("Filters:", filters)
       return data;
     })
     .catch((error) => {
-      // console.error(error);
       console.error('!!! Error Retrieving Filtered Movies From Database !!!');
     });
 };
@@ -52,11 +50,10 @@ module.exports.setSeen = (id) => {
   return pool
     .query('UPDATE movies SET seen = NOT seen WHERE id=$1', [id])
     .then((data) => {
-      // console.log(data);
       return data;
     })
     .catch((error) => {
-      console.error(error);
+      console.error('!!! Error Setting Movie Seen Status !!!');
     });
 };
 
@@ -72,11 +69,10 @@ module.exports.updateTitleInfo = (newTitleInfo) => {
       newTitleInfo.year,
     ])
     .then((data) => {
-      console.log(data);
       return data;
     })
     .catch((error) => {
-      console.error(error);
+      console.error('!!! Error Updating Movie Movie Title Information !!!');
     });
 };
 

@@ -1,15 +1,14 @@
 import React from 'react';
 
 function Years(props) {
+  let key = 3000000000;
   return (
     <div className="Years">
-      <label>
-        Movie Year: <br />
-      </label>
-      <select onChange={props.handleYearChange} value={props.selected}>
+      <select onChange={props.handleYearChange} defaultValue="Movie Year">
+        <option disabled>Movie Year</option>
         {props.years.map((year) => {
           return (
-            <option key={Math.random()} value={year.year}>
+            <option key={key++} value={year.year}>
               {year.year}
             </option>
           );
