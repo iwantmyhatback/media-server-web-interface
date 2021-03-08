@@ -7,6 +7,7 @@
   margin-left: -6px;
   top: 0;
   width: 100%;
+  z-index: 999;
 }
 
 .welcome {
@@ -98,23 +99,28 @@ label {
 }
 
 .flex-item {
-  margin: 0.75vw;
+  position: relative;
+  margin: 0.5vw;
   padding: 2vw;
   border-style: solid;
-  border-color: rgba(38, 38, 38, 1);
-  width: 86vw;
-  background: rgba(38, 38, 38, 0);
+  /* border-color: rgba(38, 38, 38, 0); */
+  width: 95vw;
+  background: linear-gradient(225deg, rgba(209, 209, 209, 0.02) 0%, rgba(166, 166, 166, 0.04) 55%, rgba(38, 38, 38, 1) 100%);
+  /* background-color: #171717; */
+  /* background: rgba(38, 38, 38, 0); */
   /* background: linear-gradient(270deg, rgba(209, 209, 209, 1) 0%, rgba(166, 166, 166, 1) 20%, rgba(38, 38, 38, 1) 100%); */
 }
 
 .flex-item-mini {
-  margin: 0.75vw;
+  margin: 0.25vw;
   padding: 2vw;
   border-style: solid;
-  border-color: rgba(38, 38, 38, 1);
-  width: 40vw;
-  max-width: 500px;
-  background: rgba(38, 38, 38, 0);
+  /* border-color: rgba(38, 38, 38, 1); */
+  width: 42vw;
+  max-width: 520px;
+  background: linear-gradient(225deg, rgba(209, 209, 209, 0.02) 0%, rgba(166, 166, 166, 0.04) 55%, rgba(38, 38, 38, 1) 100%);
+  /* background-color: #171717; */
+  /* background: rgba(38, 38, 38, 0); */
   /* background: linear-gradient(270deg, rgba(209, 209, 209, 1) 0%, 20%, rgba(38, 38, 38, 1) 100%); */
   justify: center;
   /* border-radius: 40px; */
@@ -166,12 +172,15 @@ label {
   appearance: button;
   text-decoration: none;
   float: right;
+  position: absolute;
+  bottom: 2vh;
+  right: 2vh;
 }
 
 .description-container {
   max-width: 100%;
   color: rgb(170, 170, 170);
-  font-size: x-large;
+  font-size: large;
 }
 
 .genre-container {
@@ -207,6 +216,7 @@ label {
 }
 
 .title-mini {
+  line-height: 95%;
   margin-top: 0px;
   margin-bottom: 2%;
   width: 100%;
@@ -215,6 +225,7 @@ label {
 }
 
 .title {
+  line-height: 95%;
   margin-top: 0px;
   margin-bottom: 2%;
   width: 100%;
@@ -248,8 +259,8 @@ label {
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background-color: #171717;
-  margin-top: 10vh;
+  background-color: black;
+  margin-top: 12vh;
 }
 
 .button {
