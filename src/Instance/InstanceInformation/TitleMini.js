@@ -3,7 +3,7 @@ import React from 'react';
 function TitleMini(props) {
   return (
     <div className="title-container">
-      <h1 className="title">{props.name}</h1>
+      <h1 className="title-mini">{props.name}</h1>
     </div>
   );
 }

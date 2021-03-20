@@ -2,7 +2,7 @@ import React from 'react';
 
 function Year(props) {
   return (
-    <div>
+    <div className="year">
       <b>Year:</b> {props.year}
     </div>
   );

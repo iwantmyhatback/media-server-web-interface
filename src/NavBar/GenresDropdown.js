@@ -1,15 +1,14 @@
 import React from 'react';
 
 function Genres(props) {
+  let key = 5000000000;
   return (
     <div className="Genres">
-      <label>
-        Genres: <br />
-      </label>
-      <select onChange={props.handleGenreChange} value={props.selected}>
+      <select onChange={props.handleGenreChange} defaultValue="Genres">
+        <option disabled>Genres</option>
         {props.genres.map((genre) => {
           return (
-            <option key={Math.random()} value={genre}>
+            <option key={key++} value={genre}>
               {genre}
             </option>
           );

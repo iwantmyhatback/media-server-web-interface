@@ -8,8 +8,8 @@ import axios from 'axios';
 function EditorInstance(props) {
   function updateTitleInfo() {
     let movie = {
-      name: props.movie.name,
-      year: props.movie.year,
+      name: props.original.name,
+      year: props.original.year,
       description: props.movie.description,
       avgRating: props.movie.avgRating,
       genres: props.movie.genres,

@@ -7,10 +7,12 @@
   margin-left: -6px;
   top: 0;
   width: 100%;
+  z-index: 999;
 }
 
 .welcome {
   text-decoration: none;
+  line-height: 80%;
 }
 
 .filters {
@@ -25,7 +27,7 @@
 }
 
 .Types select {
-  width: 10vw;
+  width: 14vw;
 }
 
 .Years {
@@ -34,7 +36,7 @@
 }
 
 .Years select {
-  width: 10vw;
+  width: 14vw;
 }
 
 .Genres {
@@ -43,7 +45,7 @@
 }
 
 .Genres select {
-  width: 10vw;
+  width: 14vw;
 }
 
 .Search {
@@ -61,7 +63,7 @@
 }
 
 .Seen select {
-  width: 10vw;
+  width: 14vw;
 }
 
 .Sort {
@@ -70,7 +72,7 @@
 }
 
 .Sort select {
-  width: 10vw;
+  width: 14vw;
 }
 
 .Stars {
@@ -97,22 +99,29 @@ label {
 }
 
 .flex-item {
-  margin: 0.75vw;
+  position: relative;
+  margin: 0.5vw;
   padding: 2vw;
   border-style: solid;
-  border-color: rgba(38, 38, 38, 1);
-  width: 86vw;
-  background: linear-gradient(270deg, rgba(209, 209, 209, 1) 0%, rgba(166, 166, 166, 1) 20%, rgba(38, 38, 38, 1) 100%);
+  /* border-color: rgba(38, 38, 38, 0); */
+  width: 95vw;
+  background: linear-gradient(225deg, rgba(209, 209, 209, 0.02) 0%, rgba(166, 166, 166, 0.04) 55%, rgba(38, 38, 38, 1) 100%);
+  /* background-color: #171717; */
+  /* background: rgba(38, 38, 38, 0); */
+  /* background: linear-gradient(270deg, rgba(209, 209, 209, 1) 0%, rgba(166, 166, 166, 1) 20%, rgba(38, 38, 38, 1) 100%); */
 }
 
 .flex-item-mini {
-  margin: 0.75vw;
+  margin: 0.25vw;
   padding: 2vw;
   border-style: solid;
-  border-color: rgba(38, 38, 38, 1);
-  width: 40vw;
-  max-width: 500px;
-  background: linear-gradient(270deg, rgba(209, 209, 209, 1) 0%, 20%, rgba(38, 38, 38, 1) 100%);
+  /* border-color: rgba(38, 38, 38, 1); */
+  width: 42vw;
+  max-width: 520px;
+  background: linear-gradient(225deg, rgba(209, 209, 209, 0.02) 0%, rgba(166, 166, 166, 0.04) 55%, rgba(38, 38, 38, 1) 100%);
+  /* background-color: #171717; */
+  /* background: rgba(38, 38, 38, 0); */
+  /* background: linear-gradient(270deg, rgba(209, 209, 209, 1) 0%, 20%, rgba(38, 38, 38, 1) 100%); */
   justify: center;
   /* border-radius: 40px; */
 }
@@ -163,17 +172,30 @@ label {
   appearance: button;
   text-decoration: none;
   float: right;
+  position: absolute;
+  bottom: 2vh;
+  right: 2vh;
 }
 
 .description-container {
   max-width: 100%;
+  color: rgb(170, 170, 170);
+  font-size: large;
 }
 
 .genre-container {
   max-width: 100%;
+  color: rgb(170, 170, 170);
 }
 
 .rating {
+  font-size: large;
+  color: rgb(170, 170, 170);
+}
+
+.year {
+  font-size: large;
+  color: rgb(170, 170, 170);
 }
 
 .season-container {
@@ -193,16 +215,39 @@ label {
   margin-top: 0px;
 }
 
-.title {
+.title-mini {
+  line-height: 95%;
   margin-top: 0px;
   margin-bottom: 2%;
   width: 100%;
+  font-size: x-large;
+  color: rgb(255, 255, 255);
+}
+
+.title {
+  line-height: 95%;
+  margin-top: 0px;
+  margin-bottom: 2%;
+  width: 100%;
+  font-size: xx-large;
+  color: rgb(255, 255, 255);
 }
 
 .close {
   height: 100%;
   float: right;
-  font-size: 2.5vw;
+  font-size: 3vw;
+  border-style: none;
+  background-color: rgb(1, 1, 1, 0);
+  padding: 0px;
+  color: white;
+  bottom: auto;
+}
+
+.close {
+  height: 100%;
+  float: right;
+  font-size: 3vw;
   border-style: none;
   background-color: rgb(1, 1, 1, 0);
   padding: 0px;
@@ -214,8 +259,8 @@ label {
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background-color: #171717;
-  margin-top: 180px;
+  background-color: black;
+  margin-top: 12vh;
 }
 
 .button {
@@ -248,4 +293,6 @@ body {
 
 .seen-label {
   display: inline;
+  font-size: large;
+  color: rgb(170, 170, 170);
 }
