@@ -76,6 +76,21 @@ module.exports.updateTitleInfo = (newTitleInfo) => {
     });
 };
 
+// TELEVISION QUERIES
+
+module.exports.filteredShows = (filters) => {
+  return pool
+    .query('SELECT id, name, genres, description, "posterPath",  seasons, "avgRating" FROM shows WHERE genres @> $1 ORDER BY name asc;', [filters.searchGenre])
+    .then((data) => {
+      // console.log(data);
+      return data;
+    })
+    .catch((error) => {
+      // console.error(error);
+      console.error('!!! Error Retrieving Filtered Shows From Database !!!');
+    });
+};
+
 // MOVIE ETL FUNCTIONALITY
 
 module.exports.getAllMovies = () => {
@@ -149,21 +164,6 @@ module.exports.truncateMovies = () => {
     })
     .catch((error) => {
       console.error('!!! Error Truncating The movie Table !!!');
-    });
-};
-
-// TELEVISION QUERIES
-
-module.exports.filteredShows = (filters) => {
-  return pool
-    .query('SELECT id, name, genres, description, "posterPath",  seasons, "avgRating" FROM shows WHERE genres @> $1 ORDER BY name asc;', [filters.searchGenre])
-    .then((data) => {
-      // console.log(data);
-      return data;
-    })
-    .catch((error) => {
-      // console.error(error);
-      console.error('!!! Error Retrieving Filtered Shows From Database !!!');
     });
 };
 
