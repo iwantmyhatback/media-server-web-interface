@@ -202,6 +202,8 @@ label {
   display: flex;
   flex-wrap: wrap;
   max-width: 80vw;
+  color: rgb(170, 170, 170);
+  font-size: large;
 }
 
 .season-item {
