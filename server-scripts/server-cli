@@ -1,7 +1,5 @@
 #!/bin/bash
 
-
-
 Help()
 {
         echo " usage: server-cli [-hsu]"
@@ -13,45 +11,50 @@ Help()
 
 Updater()
 {
-	echo "*** STARTING MOVIE DATABASE UPDATE ***"
-	node ~/media-server-web-interface/ETL/updateMovieDatabase.js
-	echo "*** STARTING SHOW DATABASE UPDATE ***"
-	node ~/media-server-web-interface/ETL/showDatabase.js
-	echo "*** COMPLETED DATABASE UPDATES ***"
+        echo "*** STARTING MOVIE DATABASE UPDATE ***"
+        node ~/media-server-web-interface/ETL/updateMovieDatabase.js
+        echo "*** STARTING SHOW DATABASE UPDATE ***"
+        node ~/media-server-web-interface/ETL/showDatabase.js
+        echo "*** COMPLETED DATABASE UPDATES ***"
 }
 
 Starter()
 {
-	sudo git -C ~/media-server-web-interface pull origin master
-	sudo apt update -y
-	sudo apt upgrade -y
-	sudo docker stop $DATABASE_CONTAINER
-	sudo docker start $DATABASE_CONTAINER
-	cd ~/media-server-web-interface
-	npm run build-dev
-	sudo pm2 kill
-	sudo pm2 start node ~/media-server-web-interface/server/index.js
-	echo "*** STARTING MOVIE DATABASE UPDATE ***"
-	node ~/media-server-web-interface/ETL/updateMovieDatabase.js
-	echo "*** STARTING SHOW DATABASE UPDATE ***"
-	node ~/media-server-web-interface/ETL/showDatabase.js
-	echo "*** COMPLETED DATABASE UPDATES ***"
+        sudo git -C ~/media-server-web-interface pull origin master
+        sudo apt update -y
+        sudo apt upgrade -y
+        sudo docker stop $DATABASE_CONTAINER
+        sudo docker start $DATABASE_CONTAINER
+        cd ~/media-server-web-interface
+        npm run build-dev
+        sudo pm2 kill
+        sudo pm2 start node ~/media-server-web-interface/server/index.js
+        echo "*** STARTING MOVIE DATABASE UPDATE ***"
+        node ~/media-server-web-interface/ETL/updateMovieDatabase.js
+        echo "*** STARTING SHOW DATABASE UPDATE ***"
+        node ~/media-server-web-interface/ETL/showDatabase.js
+        echo "*** COMPLETED DATABASE UPDATES ***"
 
 }
 
+if [ $# == 0 ]
+then
+        Help
+fi
+
 while getopts "hus" flag; do
 case $flag in
-	h) # Display Help Menu
-	Help
-	;;
-	u) # Update The server files
-	Updater
-	;;
-	s) # Start The Server
-	Starter
-	;;
-	\?|*) # Display Help For Invalid Entries
-	Help
-	;;
+        h) # Display Help Menu
+        Help
+        ;;
+        u) # Update The server files
+        Updater
+        ;;
+        s) # Start The Server
+        Starter
+        ;;
+        \?|*) # Display Help For Invalid Entries
+        Help
+        ;;
 esac
 done
