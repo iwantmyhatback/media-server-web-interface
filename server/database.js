@@ -2,9 +2,12 @@
 
 const config = require('../config/config.js');
 
+// Setting up database connection
 const pg = require('pg');
+const Cursor = require('pg-cursor');
 var Promise = require('bluebird');
 
+// Promisify the pg module
 Object.keys(pg).forEach(function (key) {
   var Class = pg[key];
   if (typeof Class === 'function') {
@@ -13,10 +16,30 @@ Object.keys(pg).forEach(function (key) {
   }
 });
 Promise.promisifyAll(pg);
+Cursor.prototype.readAsync = Promise.promisify(Cursor.prototype.read);
 
 const pool = new pg.Pool(config.pgCredentials);
 
 // MOVIES QUERIES
+
+// module.exports.filteredMovies = async (filters) => {
+//   const client = await pool.connect();
+//   const cursor = client.query(
+//     new Cursor(
+//       `SELECT id, name, year, description, "avgRating", "posterPath", genres, "trailerPath", seen FROM movies WHERE genres @> $1 AND year=coalesce(nullif($2, -1), year) AND seen=ANY($3) ORDER BY ${filters.sortColumn} ${filters.sortDirection};`,
+//       [filters.searchGenre, filters.searchYear, filters.searchSeen]
+//     )
+//   );
+
+//   return cursor
+//     .readAsync(100)
+//     .then((data) => {
+//       return data;
+//     })
+//     .catch((err) => {
+//       console.error(err);
+//     });
+// };
 
 module.exports.filteredMovies = (filters) => {
   return pool

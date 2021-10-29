@@ -8,11 +8,11 @@ module.exports.listMoviesNewFilterFunction = (req, res) => {
   let searchSeen = req.query.searchSeen;
   let sortColumn = req.query.sortColumn;
   let sortDirection = req.query.sortDirection;
-
+  console.log('year', searchYear);
   return database
     .filteredMovies({ searchGenre: searchGenre, searchSeen: searchSeen, searchYear: searchYear, sortColumn: sortColumn, sortDirection: sortDirection })
     .then((movieList) => {
-      res.send(movieList.rows);
+      res.send(movieList);
     });
 };
 

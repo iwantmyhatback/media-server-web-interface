@@ -16,8 +16,10 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.10.2",
-    "@babel/preset-env": "^7.10.2",
+    "@babel/plugin-transform-runtime": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
     "@babel/preset-react": "^7.10.1",
+    "@babel/runtime": "^7.15.4",
     "@hot-loader/react-dom": "^16.13.0",
     "babel-loader": "^8.1.0",
     "css-loader": "^3.6.0",
@@ -34,6 +36,7 @@
     "express": "^4.17.1",
     "normalize.css": "^8.0.1",
     "pg": "^8.2.1",
+    "pg-cursor": "^2.7.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-hot-loader": "^4.12.21"

@@ -27,19 +27,57 @@ function App() {
   // EXTERNAL REQUESTS //////////
   // MOVIE LIST REQUEST
   useEffect(() => {
-    axios
-      .get('/mov', {
-        params: {
-          searchSeen: selectedSeen,
-          searchYear: selectedYear,
-          searchGenre: translateName(selectedGenre),
-          sortColumn: selectedSort.col,
-          sortDirection: selectedSort.dir,
-        },
-      })
-      .then((data) => {
-        setMovies(data.data);
-      });
+    // Check if the entire movie table is being dumped
+    if (selectedYear === 'ALL') {
+      // Reset the movie list as to not append new results to exisiting list
+      setMovies([]);
+      // get the list of all years
+      axios
+        .get('/mov/yrs')
+        .then((data) => {
+          // put the years into state
+          setYears(data.data);
+          return data.data;
+        })
+        .then((initYears) => {
+          // Remove the 1st value ('ALL') to prevent doubling of data
+          initYears.shift();
+          // Use the years to break up database request into chunks by year
+          // await each year to preserve date ordering
+          (async () => {
+            for (const year of initYears) {
+              await axios
+                .get('/mov', {
+                  params: {
+                    searchSeen: selectedSeen,
+                    searchYear: year.year,
+                    searchGenre: translateName(selectedGenre),
+                    sortColumn: selectedSort.col,
+                    sortDirection: selectedSort.dir,
+                  },
+                })
+                .then((data) => {
+                  // Append each new response to the existing list
+                  setMovies((movies) => [...movies, ...data.data.rows]);
+                });
+            }
+          })();
+        });
+    } else {
+      axios
+        .get('/mov', {
+          params: {
+            searchSeen: selectedSeen,
+            searchYear: selectedYear,
+            searchGenre: translateName(selectedGenre),
+            sortColumn: selectedSort.col,
+            sortDirection: selectedSort.dir,
+          },
+        })
+        .then((data) => {
+          setMovies(data.data.rows);
+        });
+    }
   }, [selectedYear, selectedGenre, selectedSeen, selectedSort, showHide]);
 
   // TELEVISION LIST REQUEST
